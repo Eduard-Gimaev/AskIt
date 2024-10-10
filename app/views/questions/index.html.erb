@@ -1,0 +1,5 @@
+<h2>Questions#index</h2>
+<% @questions.each do |q| %>
+  <h3><%= q.title %></h3>
+  <p><%= q.body %> / <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %></p>
+<% end %>
