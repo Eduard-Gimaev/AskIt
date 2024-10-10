@@ -1,5 +1,21 @@
 <h2>Questions#index</h2>
+
 <% @questions.each do |q| %>
-  <h3><%= q.title %></h3>
-  <p><%= q.body %> / <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %></p>
+  <table class="table table-striped">
+    <tr>
+      <th><%= q.title %></th>
+      <td><%= link_to 'Show', question_path(q) %></td>
+      <td><%= link_to 'Edit', edit_question_path(q) %></td>
+      <td><%= link_to 'Delete', question_path(q), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } %></td>
+    </tr>
+    <tr>
+      <td colspan="4"><%= q.body %></td>
+    </tr>
+    <tr>
+      <td colspan="4" style="color: lightgrey;">
+        <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %>
+      </td>
+    </tr>
+  </table>
+  <hr>
 <% end %>
