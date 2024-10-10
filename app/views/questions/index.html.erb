@@ -1,30 +1,22 @@
-<div class="container">
-  <table class="table table-striped table-hover table-bordered table-sm">
-    <thead class="thead-dark">
-      <tr>
-        <th>Questions</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @questions.each do |q| %>
-        <tr>
-          <td><%= q.title %></td>
-          <td>
-            <%= link_to 'Show', question_path(q), class: "btn btn-primary btn-sm" %>
-            <%= link_to 'Edit', edit_question_path(q), class: "btn btn-warning btn-sm" %>
-            <%= link_to 'Delete', question_path(q), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2"><%= q.body %></td>
-        </tr>
-        <tr>
-          <td colspan="2" style="color: lightgrey;">
-            <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container mt-4">
+  <div class="row">
+    <% @questions.each do |q| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title"><%= q.title %></h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= q.body %></p>
+            <p class="text-muted"><%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %></p>
+            <div class="d-flex justify-content-center">
+              <%= link_to 'Show', question_path(q), class: "btn btn-primary btn-sm mx-1" %>
+              <%= link_to 'Edit', edit_question_path(q), class: "btn btn-warning btn-sm mx-1" %>
+              <%= link_to 'Delete', question_path(q), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mx-1" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
