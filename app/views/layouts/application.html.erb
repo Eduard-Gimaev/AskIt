@@ -43,8 +43,14 @@
         </div>
       </nav>
     </header>
+    <div class="container mt-4">
+      <% flash.each do |key, value| %>
+        <%= tag.div value, class: "alert alert-#{key == 'notice' ? 'success' : 'danger'} alert-dismissible fade show", role: "alert" %>
+      <% end %>
+    </div>
     <div class="container">
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
