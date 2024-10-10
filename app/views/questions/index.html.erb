@@ -1,21 +1,20 @@
-<h2>Questions#index</h2>
-
-<% @questions.each do |q| %>
-  <table class="table table-striped">
-    <tr>
-      <th><%= q.title %></th>
-      <td><%= link_to 'Show', question_path(q) %></td>
-      <td><%= link_to 'Edit', edit_question_path(q) %></td>
-      <td><%= link_to 'Delete', question_path(q), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } %></td>
-    </tr>
-    <tr>
-      <td colspan="4"><%= q.body %></td>
-    </tr>
-    <tr>
-      <td colspan="4" style="color: lightgrey;">
-        <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %>
-      </td>
-    </tr>
-  </table>
-  <hr>
+<h1 class="text-center bg-primary text-white py-3 mb-4 shadow-sm rounded">Questions</h1>
+<% @questions.each do |question| %>
+  <article class="card mt-3">
+    <div class="card-body">
+      <h4><%= question.title %></h4>
+      <section class="card-text">
+        <time class="text-muted" datetime="<%= question.created_at.iso8601 %>">
+          <small><%= question.created_at.strftime('%Y-%m-%d %H:%M:%S') %></small>
+        </time>
+        <p class="my-2">
+          <%= question.body %>
+        </p>
+      </section>
+      <div class="d-flex justify-content-left">
+        <%= link_to 'Show', question_path(question), class: "btn btn-primary btn-sm mx-1" %>
+        <%= link_to 'Edit', edit_question_path(question), class: "btn btn-warning btn-sm mx-1" %>
+        <%= button_to 'Delete', question_path(question), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mx-1" %>      
+      </div>
+  </article>
 <% end %>

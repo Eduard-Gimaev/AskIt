@@ -18,6 +18,12 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
+# bootrtrap for rails
+gem "bootstrap", "~> 5.1.3"
+# Use Active Storage variant
+# gem "mini_magick", ">= 4.10.0"
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible [
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

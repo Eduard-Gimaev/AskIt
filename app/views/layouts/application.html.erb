@@ -15,19 +15,42 @@
     <link rel="apple-touch-icon" href="/icon.png">
     
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Questions", questions_path %></li>
-          <li><%= link_to "New Question", new_question_path %></li>
-        </ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Ask It</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to "Home", root_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Questions", questions_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "New Question", new_question_path, class: "nav-link" %>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
     </header>
-    <%= yield %>
+    <div class="container mt-4">
+      <% flash.each do |key, value| %>
+        <%= tag.div value, class: "alert alert-#{key == 'notice' ? 'success' : 'danger'} alert-dismissible fade show", role: "alert" %>
+      <% end %>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
