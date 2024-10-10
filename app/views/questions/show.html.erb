@@ -1,2 +1,7 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<h2>Questions#show</h2>
+<div><%= link_to 'Back', questions_path, class: 'btn btn-secondary' %></div>
+<div>
+  <h3><%= @question.title %></h3>
+  <%= @question.body.present? ? @question.body : "No body" %>
+ <hr>
+</div>

@@ -1,0 +1,14 @@
+<%= form_with model: @question do |f|%>
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, required: true, minlength: 2, placeholder: "Enter the title"  %>
+  </div>
+  <div>
+    <%= f.label :body %><br>
+    <%= f.text_area :body, required: true, minlength: 2, placeholder: "Enter the details of your question"  %>
+  </div>
+
+  <div>
+    <%= f.submit @question.persisted? ? "Edit Question" : "Submit Question", class: "btn btn-primary" %>
+  </div>
+<% end %>
