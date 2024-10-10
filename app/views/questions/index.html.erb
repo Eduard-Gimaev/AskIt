@@ -1,21 +1,30 @@
-<h2>Questions#index</h2>
-
-<% @questions.each do |q| %>
-  <table class="table table-striped">
-    <tr>
-      <th><%= q.title %></th>
-      <td><%= link_to 'Show', question_path(q) %></td>
-      <td><%= link_to 'Edit', edit_question_path(q) %></td>
-      <td><%= link_to 'Delete', question_path(q), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } %></td>
-    </tr>
-    <tr>
-      <td colspan="4"><%= q.body %></td>
-    </tr>
-    <tr>
-      <td colspan="4" style="color: lightgrey;">
-        <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %>
-      </td>
-    </tr>
+<div class="container">
+  <table class="table table-striped table-hover table-bordered table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Questions</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |q| %>
+        <tr>
+          <td><%= q.title %></td>
+          <td>
+            <%= link_to 'Show', question_path(q), class: "btn btn-primary btn-sm" %>
+            <%= link_to 'Edit', edit_question_path(q), class: "btn btn-warning btn-sm" %>
+            <%= link_to 'Delete', question_path(q), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= q.body %></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="color: lightgrey;">
+            <%= q.created_at.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-  <hr>
-<% end %>
+</div>
