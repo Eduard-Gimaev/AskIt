@@ -1,4 +1,4 @@
-<h1 class="text-center bg-primary text-white py-3 mb-4 shadow-sm rounded">Questions</h1>
+<!-- <h1 class="text-center bg-primary text-white py-3 mb-4 shadow-sm rounded">Questions</h1> -->
 <% @questions.each do |question| %>
   <article class="card mt-3">
     <div class="card-body">
@@ -9,6 +9,15 @@
         </time>
         <p class="my-2">
           <%= question.body %>
+          <hr>
+          </p>
+        <% if question.answers.any? %>
+          <% question.answers.each do |answer| %>
+            <p class="my-2 text-muted small">
+              <%= truncate(answer.body, length: 100) %>
+            </p>
+          <% end %>
+        <% end %>
         </p>
       </section>
       <div class="d-flex justify-content-left">

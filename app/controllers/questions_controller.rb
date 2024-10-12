@@ -18,8 +18,7 @@ class QuestionsController < ApplicationController
       flash[:notice] = 'Question was successfully created.'
       redirect_to questions_path
     else
-      flash.now[:alert] = 'There was an error creating the question.'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

@@ -37,19 +37,24 @@
               <li class="nav-item">
                 <%= link_to "New Question", new_question_path, class: "nav-link" %>
               </li>
+              <li class="nav-item">
+                <%= link_to "About", "#", class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Contacts", "#", class: "nav-link" %>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    <div class="container mt-4">
+    <div class="container">
       <% flash.each do |key, value| %>
         <%= tag.div value, class: "alert alert-#{key == 'notice' ? 'success' : 'danger'} alert-dismissible fade show", role: "alert" %>
       <% end %>
     </div>
-    <div class="container">
+    <main class="container">
       <%= yield %>
-    </div>
-    <%= render 'layouts/footer' %>
+    </main>
   </body>
 </html>

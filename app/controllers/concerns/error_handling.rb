@@ -15,4 +15,8 @@ module ErrorHandling
       format.json { render json: { error: "Not found" }, status: :not_found }
     end
   end
+
+  def turbo_frame_request?
+    request.headers['Turbo-Frame'] == '1'
+  end
 end
