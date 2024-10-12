@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><%= @answer.persisted? ? "Edit Answer" : "New Answer" %></h4>
+          <p class="card-text">
+            <strong>Question:</strong> <%= @answer.question.body %>
+          </p>
+        </div>
+        <div class="card-body">
+          <%= form_with model: [@answer.question, @answer], local: true, class: "needs-validation" do |f| %>
+            <div class="mb-3">
+              <%= f.text_area :body, class: "form-control #{'is-invalid' if @answer.errors[:body].any?}", placeholder: "Enter your answer" %>
+              <%= render 'shared/errors_resource_entity', resource: @answer, resource_entity: :body %>
+            </div>
+            <div class="d-grid gap-2">
+              <div class="col-md-6">
+                <%= f.submit @answer.persisted? ? "Edit Answer" : "Submit Answer", class: "btn btn-primary btn-block" %>
+              </div>
+            </div>
+          <% end %>
+          <div class="mt-3">
+            <%= link_to 'Back', question_path(@answer.question), class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

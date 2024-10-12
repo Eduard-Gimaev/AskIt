@@ -23,5 +23,10 @@ module AskIt
     #
     config.time_zone = "Madrid"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Ensure the asset pipeline is enabled and configured
+    config.assets.enabled = true
+    config.assets.paths << Rails.root.join('app', 'assets', 'stylesheets')
+    config.assets.precompile += %w( application.scss )
   end
 end
