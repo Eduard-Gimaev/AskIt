@@ -23,6 +23,7 @@ gem "bootstrap", "~> 5.1.3"
 # Use Active Storage variant
 # gem "mini_magick", ">= 4.10.0"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible [
+gem "kaminari", "~> 1.2.2"
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -41,6 +42,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'byebug' # Debugging tool
+  gem 'faker' # Generate fake data
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 

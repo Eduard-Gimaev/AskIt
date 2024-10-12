@@ -1,6 +1,7 @@
 <%= provide :page_title, 'Questions' %>
 
 <%= currently_at 'Questions' %>
+<%= paginate @questions %>
 
 <% @questions.each do |question| %>
   <article class="card mt-3">
@@ -11,14 +12,14 @@
           <small><%= question.created_at.strftime('%Y-%m-%d %H:%M:%S') %></small>
         </time>
         <p class="my-2">
-          <%= question.body %>
+          <%= truncate(question.body, length: 100) %>
           <hr>
           </p>
         <% if question.answers.any? %>
           <% question.answers.each do |answer| %>
-            <p class="my-2 text-muted small">
+            <div class="my-2 text-muted small">
               <%= truncate(answer.body, length: 100) %>
-            </p>
+            </div>
           <% end %>
         <% end %>
         </p>
@@ -30,3 +31,4 @@
       </div>
   </article>
 <% end %>
+<%= paginate @questions %>
