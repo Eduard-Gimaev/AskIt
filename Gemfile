@@ -24,6 +24,7 @@ gem "bootstrap", "~> 5.1.3"
 # gem "mini_magick", ">= 4.10.0"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible [
 gem "kaminari", "~> 1.2.2"
+gem 'draper', '~> 4.0'
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
