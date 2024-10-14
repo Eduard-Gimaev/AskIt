@@ -33,7 +33,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <li>
-                    <%= link_to "Edit Profile", "#", class: "dropdown-item" %>
+                    <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
                   </li>
                   <li>
                     <%= link_to "My Questions", "#", class: "dropdown-item" %>
@@ -41,6 +41,7 @@
                   <li>
                     <%= link_to "My Answers", "#", class: "dropdown-item" %>
                   </li>
+                  <Li><hr class="dropdown-divider"></Li>
                   <li>
                     <%= link_to "Sign Out", session_path(current_user), data: { turbo_method: :delete }, class: "dropdown-item" %>
                   </li>

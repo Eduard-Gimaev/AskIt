@@ -18,13 +18,20 @@ class UsersController < ApplicationController
 
   end
   def edit
-    
   end
   def update
+    if @user.update(user_params)
+      flash[:notice] = 'User was successfully updated.'
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
 
   end
   def destroy
-
+     @user.destroy
+    flash[:notice] = 'User was successfully deleted.'
+    redirect_to users_path
   end
   
     
@@ -35,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
   end
 
 end
