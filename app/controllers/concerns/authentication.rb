@@ -15,4 +15,11 @@ module Authentication
 
     helper_method :current_user, :user_signed_in?
   end
+
+  def authenticate_user!
+    unless user_signed_in?
+      flash.now[:alert] = 'You need to sign in before continuing.'
+        render 'sessions/new', status: :unauthorized
+    end
+  end
 end
