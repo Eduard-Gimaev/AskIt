@@ -3,11 +3,17 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, 'valid_email2/email': true
   validates :password, presence: true, length: { minimum: 4 }, if: :password_required?, allow_blank: true
   validates :password_confirmation, presence: true, if: :password_required?
   validate :password_complexity, if: :password_required?
-  validate :current_password_is_correct, if: :current_password_required?
+  validate :current_password_is_correct, if: :current_password_required?, on: :update, if: -> { password.present? }
+
+  before_save { email.downcase! }
+
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
 
   private
 
