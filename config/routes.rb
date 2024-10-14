@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'sign_up', to: 'users#new', as: 'sign_up'
   get 'sign_in', to: 'sessions#new', as: 'sign_in'
+  post 'sign_in', to: 'sessions#create'
   delete 'sign_out', to: 'sessions#destroy', as: 'sign_out'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

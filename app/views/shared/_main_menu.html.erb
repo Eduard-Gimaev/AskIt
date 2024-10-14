@@ -27,15 +27,18 @@
             </ul>
             <ul class="navbar-nav ms-auto">
             <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "Sign Out", sign_out_path, method: :delete, class: "nav-link" %>
-              </li>
+            <li class="nav-item d-flex align-items-center">
+              <span class="navbar-text">Hello, <%= current_user.name %>!</span>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign Out", sign_out_path, data: { turbo_method: :delete }, class: "nav-link" %>
+            </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "Sign Up", sign_up_path, class: "nav-link" %>
+                <%= nav_tab "Sign In", sign_in_path, class: "nav-link", current_page: current_page %> 
               </li>
               <li class="nav-item">
-                <%= link_to "Sign In", sign_in_path, class: "nav-link" %>
+                <%= nav_tab "Sign Up", sign_up_path, class: "nav-link", current_page: current_page %>
               </li>
             <% end %>
           </ul>
