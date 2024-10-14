@@ -1,6 +1,6 @@
  <% if question.answers.any? %>
       <% question.answers.each do |answer| %>
-        <article class="card mt-3" id='answer-<%= answer.id %>'>
+        <%= tag.article class: "card mt-3", id: dom_id(answer) do %>
           <div class="card-body">
             <section class="card-text">
               <time class="text-muted" datetime="<%= answer.created_at.iso8601 %>">
@@ -15,6 +15,6 @@
               <%= button_to 'Delete', question_answer_path(question, answer), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mx-1" %>
             </div>
           </div>
-        </article>
+        <% end %>
       <% end %>
     <% end %>

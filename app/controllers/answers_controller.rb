@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  include ActionView::RecordIdentifier
+
   before_action :set_question, only: [:new, :create]
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +13,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
       flash[:notice] = 'Answer was successfully created.'
-      redirect_to question_path(@question, anchor: "answer-#{@answer.id}")
+      redirect_to question_path(@question, anchor: dom_id(@answer))
     else
       flash.now[:alert] = 'There was an error creating the answer.'
       render :new
@@ -24,7 +26,7 @@ class AnswersController < ApplicationController
   def update
     if @answer.update(answer_params)
       flash[:notice] = 'Answer was successfully updated.'
-      redirect_to question_path(@answer.question, anchor: "answer-#{@answer.id}")
+      redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
       flash.now[:alert] = 'There was an error updating the answer.'
       render :edit
