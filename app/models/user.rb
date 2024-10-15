@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :current_password
+  attr_accessor :current_password, :remember_token
 
   has_secure_password validations: false
 
@@ -14,8 +14,23 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
+  def remember_me
+    self.remember_token = SecureRandom.urlsafe_base64
+    update_attribute(:remember_token_digest, Digest::SHA1.hexdigest(remember_token.to_s))
+  end
+
+  def forget_me
+    update_attribute(:remember_token_digest, nil)
+  end
+
+  def authenticated?(remember_token)
+    return false if remember_token_digest.nil?
+    Digest::SHA1.hexdigest(remember_token) == remember_token_digest
+  end
 
   private
+
+
 
   def password_required?
     new_record? || password.present? || password_confirmation.present?

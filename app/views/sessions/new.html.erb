@@ -12,11 +12,17 @@
           <%= form_with(url: sessions_path, local: true, class: "needs-validation") do |f| %>
             <div class="mb-3">
               <%= f.label :email, class: "form-label" %>
-              <%= f.email_field :email, class: "form-control", placeholder: "Enter your email" %>
+              <%= f.email_field :email, value: params[:email], class: "form-control", placeholder: "Enter your email" %>
             </div>
             <div class="mb-3">
               <%= f.label :password, class: "form-label" %>
               <%= f.password_field :password, class: "form-control", placeholder: "Enter your password" %>
+            </div>
+            <div class="mb-3">
+              <div class="check-box">
+                <%= f.check_box :remember_me, class: "form-check-input", value: '1' %>
+                <%= f.label :remember_me, class: "form-check-label" %>  
+              </div>
             </div>
             <div class="d-grid gap-2">
               <%= f.submit "Sign In", class: "btn btn-primary btn-block" %>
