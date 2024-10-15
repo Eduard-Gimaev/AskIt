@@ -42,7 +42,7 @@ class User < ApplicationRecord
 
   def current_password_is_correct
     unless BCrypt::Password.new(password_digest_was).is_password?(current_password)
-      errors.add(:current_password, 'is incorrect')
+      errors.add(:current_password, "is incorrect")
     end
   end
 
