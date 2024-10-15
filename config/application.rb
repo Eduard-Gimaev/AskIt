@@ -26,7 +26,7 @@ module AskIt
 
     # Ensure the asset pipeline is enabled and configured
     config.assets.enabled = true
-    config.assets.paths << Rails.root.join('app', 'assets', 'stylesheets')
-    config.assets.precompile += %w( application.scss )
+    config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
+    config.assets.precompile += %w[ application.scss ]
   end
 end

@@ -12,7 +12,7 @@
   title = Faker::Hipster.sentence(word_count: 3)
   body = Faker::Hipster.paragraph(sentence_count: 3)
   question = Question.create(title: title, body: body)
-  
+
   3.times do
     answer_body = Faker::Hipster.paragraph(sentence_count: 2)
     Answer.create(body: answer_body, question: question)

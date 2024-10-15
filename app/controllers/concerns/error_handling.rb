@@ -9,7 +9,7 @@ module ErrorHandling
 
   def not_found(exception)
     logger.warn(exception)
-    
+
     respond_to do |format|
       format.html { render file: Rails.root.join("public/404.html"), status: 404, layout: false }
       format.json { render json: { error: "Not found" }, status: :not_found }
@@ -17,6 +17,6 @@ module ErrorHandling
   end
 
   def turbo_frame_request?
-    request.headers['Turbo-Frame'] == '1'
+    request.headers["Turbo-Frame"] == "1"
   end
 end

@@ -25,6 +25,37 @@
                 <%= nav_tab "Contacts", "#", class: "nav-link", current_page: current_page %>
               </li>
             </ul>
+            <ul class="navbar-nav ms-auto">
+              <% if user_signed_in? %>
+              <li class="nav-item dropdown d-flex align-items-center">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.name_or_email %>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li>
+                    <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= link_to "My Questions", "#", class: "dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= link_to "My Answers", "#", class: "dropdown-item" %>
+                  </li>
+                  <Li><hr class="dropdown-divider"></Li>
+                  <li>
+                    <%= link_to "Sign Out", session_path(current_user), data: { turbo_method: :delete }, class: "dropdown-item" %>
+                  </li>
+                </ul>
+              </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= nav_tab "Sign In", new_session_path, class: "nav-link", current_page: current_page %> 
+                </li>
+                <li class="nav-item">
+                  <%= nav_tab "Sign Up", new_user_path, class: "nav-link", current_page: current_page %>
+                </li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </nav>

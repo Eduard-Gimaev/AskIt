@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
-  before_action :set_question, only: [:new, :create]
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  include ActionView::RecordIdentifier
+
+  before_action :set_question, only: [ :new, :create ]
+  before_action :set_answer, only: [ :show, :edit, :update, :destroy ]
 
   def new
     @answer = @question.answers.new
@@ -10,10 +12,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
 
     if @answer.save
-      flash[:notice] = 'Answer was successfully created.'
-      redirect_to question_path(@question, anchor: "answer-#{@answer.id}")
+      flash[:notice] = "Answer was successfully created."
+      redirect_to question_path(@question, anchor: dom_id(@answer))
     else
-      flash.now[:alert] = 'There was an error creating the answer.'
+      flash.now[:alert] = "There was an error creating the answer."
       render :new
     end
   end
@@ -23,10 +25,10 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
-      flash[:notice] = 'Answer was successfully updated.'
-      redirect_to question_path(@answer.question, anchor: "answer-#{@answer.id}")
+      flash[:notice] = "Answer was successfully updated."
+      redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
-      flash.now[:alert] = 'There was an error updating the answer.'
+      flash.now[:alert] = "There was an error updating the answer."
       render :edit
     end
   end
@@ -34,10 +36,10 @@ class AnswersController < ApplicationController
   def destroy
     @question = @answer.question
     if @answer.destroy
-      flash[:notice] = 'Answer was successfully deleted.'
+      flash[:notice] = "Answer was successfully deleted."
       redirect_to question_path(@question)
     else
-      flash[:alert] = 'There was an error deleting the answer.'
+      flash[:alert] = "There was an error deleting the answer."
       redirect_to question_path(@question)
     end
   end

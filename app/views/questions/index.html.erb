@@ -1,7 +1,7 @@
 <%= provide :page_title, 'Questions' %>
 
 <%= currently_at 'Questions' %>
-<%= paginate @questions %>
+<%= paginate(@questions) if @questions.total_pages > 1 %>
 
 <% @questions.each do |question| %>
   <article class="card mt-3">
@@ -31,4 +31,4 @@
       </div>
   </article>
 <% end %>
-<%= paginate @questions %>
+<%= paginate(@questions) if @questions.total_pages > 1 %>
