@@ -39,8 +39,11 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem "valid_email2"
+gem "valid_email2" # Email validation
 
+gem "rubyzip" # Zip files
+gem 'caxlsx' # Excel files
+gem 'caxlsx_rails' # Excel files
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

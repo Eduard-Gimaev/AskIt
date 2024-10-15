@@ -28,9 +28,32 @@ class User < ApplicationRecord
     Digest::SHA1.hexdigest(remember_token) == remember_token_digest
   end
 
+  def self.to_xlsx
+    attributes = %w{id name email created_at updated_at}
+
+    p = Axlsx::Package.new
+    wb = p.workbook
+    wb.add_worksheet(name: "Users") do |sheet|
+      sheet.add_row attributes
+      all.each do |user|
+        sheet.add_row attributes.map { |attr| user.send(attr) }
+      end
+    end
+    p.to_stream.read
+  end
+
+  def self.to_zip
+    xlsx_data = to_xlsx
+
+    compressed_filestream = Zip::OutputStream.write_buffer do |zos|
+      zos.put_next_entry "users-#{Date.today}.xlsx"
+      zos.print xlsx_data
+    end
+    compressed_filestream.rewind
+    compressed_filestream.read
+  end
+
   private
-
-
 
   def password_required?
     new_record? || password.present? || password_confirmation.present?
