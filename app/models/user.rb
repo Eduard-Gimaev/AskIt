@@ -29,31 +29,31 @@ class User < ApplicationRecord
   end
 
   def self.to_xlsx
-    attributes = %w{id name email created_at updated_at}
+    attributes = %w[id name email created_at updated_at]
 
     p = Axlsx::Package.new
     wb = p.workbook
     wb.add_worksheet(name: "Users") do |sheet|
       # Define styles
-      header_style = wb.styles.add_style(b: true, alignment: { horizontal: :center }, 
-                                                  border: { style: :thin, color: '000000' })
-      even_row_style = wb.styles.add_style(bg_color: 'DDDDDD', 
-                                           border: { style: :thin, color: '000000' })
-      odd_row_style = wb.styles.add_style(bg_color: 'FFFFFF', 
-                                          border: { style: :thin, color: '000000' })
-      summary_style = wb.styles.add_style(b: true, alignment: { horizontal: :right }, 
-                                            border: { style: :thin, color: '000000' })
+      header_style = wb.styles.add_style(b: true, alignment: { horizontal: :center },
+                                                  border: { style: :thin, color: "000000" })
+      even_row_style = wb.styles.add_style(bg_color: "DDDDDD",
+                                           border: { style: :thin, color: "000000" })
+      odd_row_style = wb.styles.add_style(bg_color: "FFFFFF",
+                                          border: { style: :thin, color: "000000" })
+      summary_style = wb.styles.add_style(b: true, alignment: { horizontal: :right },
+                                            border: { style: :thin, color: "000000" })
 
       # Add header row with style
       sheet.add_row attributes, style: header_style
 
-       # Freeze the header row
+      # Freeze the header row
       sheet.sheet_view.pane do |pane|
         pane.top_left_cell = "A2"
         pane.state = :frozen_split
         pane.y_split = 1
       end
-       # Add filters to the header row
+      # Add filters to the header row
       sheet.auto_filter = "A1:E1"
 
       # Add data rows with alternating styles
@@ -70,12 +70,12 @@ class User < ApplicationRecord
       end
       # Add summary row
       total_users = all.count
-      sheet.add_row ["Total Users", total_users], style: summary_style, height: 20
+      sheet.add_row [ "Total Users", total_users ], style: summary_style, height: 20
     end
     p.to_stream.read
   end
 
-  
+
 
   def self.to_zip
     xlsx_data = to_xlsx

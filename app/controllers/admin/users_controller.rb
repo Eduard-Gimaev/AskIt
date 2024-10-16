@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [ :show, :edit, :update]
+  before_action :set_user, only: [ :show, :edit, :update ]
 
   def index
     @users = User.all.order(created_at: :desc).page(params[:page]).per(5)
@@ -31,10 +31,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user 
+    @user
   end
   def edit
-
   end
   def update
     if @user.update(user_params)
@@ -42,22 +41,20 @@ class Admin::UsersController < ApplicationController
       redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
-  end
+    end
 
-  # def destroy
-  #   @user.destroy
-  #   flash[:notice] = "User was successfully deleted."
-  #   redirect_to admin_users_path
-  # end
-
+    # def destroy
+    #   @user.destroy
+    #   flash[:notice] = "User was successfully deleted."
+    #   redirect_to admin_users_path
+    # end
   end
   private
   def set_user
     @user = User.find(params[:id])
-  end 
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
   end
-
 end
