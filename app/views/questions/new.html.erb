@@ -1,3 +1,12 @@
-<%= currently_at 'New Question' %>
+<%= provide :title, 'New User' %>
 
-<%= render 'form' %>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>New User</h2>
+    </div>
+    <div class="card-body">
+      <%= render 'form', user: @user %>
+    </div>
+  </div>
+</div>
