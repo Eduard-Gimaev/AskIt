@@ -12,10 +12,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
 
     if @answer.save
-      flash[:notice] = "Answer was successfully created."
+       flash[:notice] = t('flash.success_create', resource: t('resources.answer'))
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
-      flash.now[:alert] = "There was an error creating the answer."
+      flash[:alert] = t('flash.failure_create', resource: t('resources.answer'))
       render :new, status: :unprocessable_entity
     end
   end
@@ -25,10 +25,10 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
-      flash[:notice] = "Answer was successfully updated."
+      flash[:notice] = t('flash.success_update', resource: t('resources.answer'))
       redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
-      flash.now[:alert] = "There was an error updating the answer."
+      flash[:alert] = t('flash.failure_update', resource: t('resources.answer'))
       render :edit
     end
   end
@@ -36,10 +36,10 @@ class AnswersController < ApplicationController
   def destroy
     @question = @answer.question
     if @answer.destroy
-      flash[:notice] = "Answer was successfully deleted."
+      flash[:notice] = t('flash.success_destroy', resource: t('resources.answer'))
       redirect_to question_path(@question)
     else
-      flash[:alert] = "There was an error deleting the answer."
+      flash[:alert] = t('flash.failure_destroy', resource: t('resources.answer'))
       redirect_to question_path(@question)
     end
   end

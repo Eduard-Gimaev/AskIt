@@ -3,44 +3,42 @@
     <div class="col-md-8 offset-md-2">
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title"><%= @user.persisted? ? "Edit User" : "New User" %></h2>
+          <h2 class="card-title"><%= @user.persisted? ? t('actions.edit_resource', resource: t('resources.user')) : t('actions.create_resource', resource: t('resources.user')) %></h2>
         </div>
         <div class="card-body">   
           <%= form_with model: @user, local: true, class: "needs-validation" do |f| %>
             <div class="mb-3">
-              <%= f.label :name, class: "form-label" %>
-              <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors[:name].any?}", placeholder: "Enter your name" %>
+              <%= f.label :name, t('resources.name'), class: "form-label" %>
+              <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors[:name].any?}", placeholder: t('actions.enter_resource', resource: t('resources.name')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :name %> 
             </div>
             <div class="mb-3">
-              <%= f.label :email, class: "form-label" %>
-              <%= f.email_field :email, class: "form-control #{'is-invalid' if @user.errors[:email].any?}", placeholder: "Enter your email" %>
+              <%= f.label :email, t('resources.email'), class: "form-label" %>
+              <%= f.email_field :email, class: "form-control #{'is-invalid' if @user.errors[:email].any?}", placeholder: t('actions.enter_resource', resource: t('resources.email')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :email %>
             </div>
             <div class="mb-3">
-              <%= f.label :password, class: "form-label" %>
-              <%= f.password_field :password, class: "form-control #{'is-invalid' if @user.errors[:password].any?}", placeholder: "Enter your password" %>
+              <%= f.label :password, t('resources.password'), class: "form-label" %>
+              <%= f.password_field :password, class: "form-control #{'is-invalid' if @user.errors[:password].any?}", placeholder: t('actions.enter_resource', resource: t('resources.password')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password %>
             </div>
             <div class="mb-3">
-              <%= f.label :password_confirmation, class: "form-label" %>
-              <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if @user.errors[:password_confirmation].any?}", placeholder: "Confirm your password" %>
+              <%= f.label :password_confirmation, t('resources.password_confirmation'), class: "form-label" %>
+              <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if @user.errors[:password_confirmation].any?}", placeholder: t('actions.enter_resource', resource: t('resources.password_confirmation')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password_confirmation %>
             </div>
             <% if @user.persisted? %>
             <div class="mb-3">
-              <%= f.label :current_password, "Current Password", class: "form-label" %>
-              <%= f.password_field :current_password, class: "form-control #{'is-invalid' if @user.errors[:current_password].any?}", placeholder: "Enter your current password" %>
+              <%= f.label :current_password, t('resources.current_password'), class: "form-label" %>
+              <%= f.password_field :current_password, class: "form-control #{'is-invalid' if @user.errors[:current_password].any?}", placeholder: t('actions.enter_resource', resource: t('resources.current_password')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :current_password %>
             </div>
             <% end %>
             <div class="mt-3">
               <div class="d-grid gap-2">
                 <div class="col-md-6">
-                  <%= f.submit @user.persisted? ? "Edit User" : "Submit User", class: "btn btn-primary btn-block" %>
-                </div>
-                <div>
-                  <%= link_to 'Back', users_path, class: 'btn btn-secondary' %>
+                  <%= f.submit t('actions.submit'), class: "btn btn-primary btn-block" %>
+                  <%= link_to t('actions.back_to', resource: t('resources.users')), users_path, class: 'btn btn-secondary' %>
                 </div>
               </div>
             </div>
