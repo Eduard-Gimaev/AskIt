@@ -19,7 +19,7 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 # bootrtrap for rails
-gem "bootstrap", "~> 5.1.3"
+gem "bootstrap", "~> 5.3.3"
 # Use Active Storage variant
 # gem "mini_magick", ">= 4.10.0"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible [
