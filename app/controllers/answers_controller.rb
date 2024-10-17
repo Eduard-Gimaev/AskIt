@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
       flash.now[:alert] = "There was an error creating the answer."
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

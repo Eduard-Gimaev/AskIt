@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers
   end
+
   root "pages#index"
+  namespace :admin do
+    resources :users
+  end
 
   # get 'sign_up', to: 'users#new', as: 'sign_up'
   # get 'sign_in', to: 'sessions#new', as: 'sign_in'

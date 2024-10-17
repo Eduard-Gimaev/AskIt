@@ -22,11 +22,11 @@ module Authentication
           session[:user_id] = user.id
         end
       end
-      # rescue ActiveRecord::RecordNotFound
-      # session.delete(:user_id)
-      # cookies.delete(:user_id)
-      # cookies.delete(:remember_token)
-      # @current_user = nil
+      rescue ActiveRecord::RecordNotFound
+      session.delete(:user_id)
+      cookies.delete(:user_id)
+      cookies.delete(:remember_token)
+      @current_user = nil
     end
 
     def user_signed_in?
