@@ -1,4 +1,13 @@
 en:
+  welcome:
+    title: "Welcome to AskIt"
+    lead: "Your go-to platform for asking and answering questions. Join our community and share your knowledge!"
+    get_started: "Get started by exploring questions or asking your own."
+  languages:
+    en: "English"
+    ru: "Русский"
+    es: "Español"
+    ar: "العربية"
   actions:
     home: "Home"
     Questions: "Questions"
@@ -29,14 +38,12 @@ en:
     back: "Back"
     submit: "Submit"
     cancel: "Cancel"
-
     are_you_sure?: "Are you sure?"
     download_zip_xlsx: "Download Zip XLSX"
     download_xlsx: "Download XLSX"
     choose_xlsx_or_zip_file: "Choose XLSX or ZIP file"
     upload_file: "Upload %{resource}"
     enter_resource: "Enter the %{resource}"
-
   resources:
     about: "About"
     contacts: "Contacts"
@@ -62,7 +69,6 @@ en:
     current_password: "Current Password"
     confirm_password: "Confirm Password"
     error: "Error"
-
   flash:
     success_create: "%{resource} was successfully created."
     success_update: "%{resource} was successfully updated."
@@ -70,10 +76,40 @@ en:
     success_sign_in: "Welcome back, %{name}!"
     success_sign_out: "See you soon, %{name}!"
     sign_in_required: "You need to sign in before continuing."
-    
     failure_create: "There was an error creating the %{resource}."
     failure_update: "There was an error updating the %{resource}."
     failure_destroy: "There was an error deleting the %{resource}."
     failure: "There was an error creating the %{resource}."
     file_success: "File uploaded successfully."
     prohibited: "prohibited this %{resource} from being saved"
+  activerecord:
+    models:
+      user: "User"
+      question: "Question"
+      answer: "Answer"
+      session: "Session"
+      file: "File"
+    attributes:
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        current_password: "Current Password"
+      question:
+        title: "Title"
+        body: "Body"
+      answer:
+        body: "Body"
+      session:
+        email: "Email"
+        password: "Password"
+      file:
+        file_name: "File Name"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Previous"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"

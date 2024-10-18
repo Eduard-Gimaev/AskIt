@@ -16,8 +16,8 @@ module AskIt
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    config.i18n.available_locales = [:en, :es, :fr, :ru]
-    config.i18n.default_locale = :ru
+    config.i18n.available_locales = [:en, :ru, :es, :ar]
+    config.i18n.default_locale = :en
     config.time_zone = "Madrid"
     # config.eager_load_paths << Rails.root.join("extras")
 

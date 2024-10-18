@@ -25,7 +25,36 @@
                 <%= nav_tab t('resources.contacts'), "#", class: "nav-link", current_page: current_page %>
               </li>
             </ul>
+
             <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown d-flex align-items-center">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-globe"></i> <%= I18n.t("languages.#{I18n.locale}") %>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                 <li>
+                    <%= link_to set_locale_path(locale: 'en'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-gb"></span> <%= I18n.t('languages.en') %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_locale_path(locale: 'ru'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-ru"></span> <%= I18n.t('languages.ru') %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_locale_path(locale: 'es'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-es"></span> <%= I18n.t('languages.es') %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_locale_path(locale: 'ar'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-sa"></span> <%= I18n.t('languages.ar') %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+
               <% if user_signed_in? %>
               <li class="nav-item dropdown d-flex align-items-center">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

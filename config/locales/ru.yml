@@ -1,4 +1,39 @@
 ru:
+  welcome:
+    title: "Добро пожаловать в AskIt"
+    lead: "Ваша платформа для вопросов и ответов. Присоединяйтесь к нашему сообществу и делитесь своими знаниями!"
+    get_started: "Начните с изучения вопросов или задайте свой собственный."
+  languages:
+    en: "English"
+    ru: "Русский"
+    es: "Español" 
+    ar: "العربية"
+  activerecord:
+    attributes:
+      user:
+        name: "Имя"
+        email: "Электронная почта"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        current_password: "Текущий пароль"
+      question:
+        title: "Заголовок"
+        body: "Содержание"
+      answer:
+        body: "Содержание"
+      session:
+        email: "Электронная почта"
+        password: "Пароль"
+      file:
+        file_name: "Имя файла"
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      previous: "&lsaquo; Предыдущая"
+      next: "Следующая &rsaquo;"
+      truncate: "&hellip;"
+
   actions:
     home: "Главная"
     Questions: "Вопросы"
