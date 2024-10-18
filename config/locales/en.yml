@@ -1,31 +1,115 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  welcome:
+    title: "Welcome to AskIt"
+    lead: "Your go-to platform for asking and answering questions. Join our community and share your knowledge!"
+    get_started: "Get started by exploring questions or asking your own."
+  languages:
+    en: "English"
+    ru: "Русский"
+    es: "Español"
+    ar: "العربية"
+  actions:
+    home: "Home"
+    Questions: "Questions"
+    explore_questions: "Explore Questions"
+    ask_question: "Ask Question"
+    new_resource: "New %{resource}"
+    registration: "Registration"
+    signup: "Sign up"
+    signin: "Sign in"
+    signout: "Sign out"
+    joined_at: "Joined at:"
+    updated_at: "Updated at:"
+    edit_profile: "Edit Profile"
+    my_questions: "My Questions"
+    my_answers: "My Answers"
+    create_resource: "Create %{resource}"
+    add_resource: "Add %{resource}"
+    show_resource: "Show %{resource}"
+    edit_resource: "Edit %{resource}"
+    delete_resource: "Delete %{resource}"
+    update_resource: "Update %{resource}" 
+    back_to: "Back to %{resource}"
+    create: "Create"
+    show: "Show"
+    edit: "Edit"
+    delete: "Delete"
+    update: "Update"
+    back: "Back"
+    submit: "Submit"
+    cancel: "Cancel"
+    are_you_sure?: "Are you sure?"
+    download_zip_xlsx: "Download Zip XLSX"
+    download_xlsx: "Download XLSX"
+    choose_xlsx_or_zip_file: "Choose XLSX or ZIP file"
+    upload_file: "Upload %{resource}"
+    enter_resource: "Enter the %{resource}"
+  resources:
+    about: "About"
+    contacts: "Contacts"
+    admin: "Admin"
+    user: "User"
+    users: "Users"
+    name: "Name"
+    email: "Email"
+    questions: "Questions"
+    answers: "Answers"
+    question: "Question"
+    answer: "Answer"
+    session: "Session"
+    authentication: "Authentication"
+    file: "File"
+    xlsx: "XLSX"
+    zip: "ZIP"
+    file_name: "File Name"
+    title: "Title"
+    body: "Body"
+    password: "Password"
+    password_confirmation: "Password Confirmation"
+    current_password: "Current Password"
+    confirm_password: "Confirm Password"
+    error: "Error"
+  flash:
+    success_create: "%{resource} was successfully created."
+    success_update: "%{resource} was successfully updated."
+    success_destroy: "%{resource} was successfully deleted."
+    success_sign_in: "Welcome back, %{name}!"
+    success_sign_out: "See you soon, %{name}!"
+    sign_in_required: "You need to sign in before continuing."
+    failure_create: "There was an error creating the %{resource}."
+    failure_update: "There was an error updating the %{resource}."
+    failure_destroy: "There was an error deleting the %{resource}."
+    failure: "There was an error creating the %{resource}."
+    file_success: "File uploaded successfully."
+    prohibited: "prohibited this %{resource} from being saved"
+  activerecord:
+    models:
+      user: "User"
+      question: "Question"
+      answer: "Answer"
+      session: "Session"
+      file: "File"
+    attributes:
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        current_password: "Current Password"
+      question:
+        title: "Title"
+        body: "Body"
+      answer:
+        body: "Body"
+      session:
+        email: "Email"
+        password: "Password"
+      file:
+        file_name: "File Name"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Previous"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"

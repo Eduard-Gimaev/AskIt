@@ -18,13 +18,13 @@ class Admin::UsersController < ApplicationController
   def create
     if params[:file].present?
       UserBulkService.call(params[:file])
-      flash[:notice] = "File uploaded successfully."
+      flash[:notice] = t('flash.success_upload', resource: t('resources.file'))
     else
       @user = User.new(user_params)
-      if @user.save
-        flash[:notice] = "User was successfully created."
+       if @user.save
+        flash[:notice] = t('flash.success_create', resource: t('resources.user'))
       else
-        flash[:alert] = "There was an error creating the user."
+        flash[:alert] = t('flash.failure_create', resource: t('resources.user'))
       end
     end
       redirect_to admin_users_path
@@ -35,21 +35,28 @@ class Admin::UsersController < ApplicationController
   end
   def edit
   end
+
   def update
     if @user.update(user_params)
-      flash[:notice] = "User was successfully updated."
-      redirect_to root_path
+      flash[:notice] = t('flash.success_update', resource: t('resources.user'))
+      redirect_to admin_user_path(@user)
     else
+      flash[:alert] = t('flash.failure_update', resource: t('resources.user'))
       render :edit, status: :unprocessable_entity
     end
-
-    # def destroy
-    #   @user.destroy
-    #   flash[:notice] = "User was successfully deleted."
-    #   redirect_to admin_users_path
-    # end
   end
+
+  # def destroy
+  #   if @user.destroy
+  #     flash[:notice] = t('flash.success_destroy', resource: t('resources.user'))
+  #   else
+  #     flash[:alert] = t('flash.failure_destroy', resource: t('resources.user'))
+  #   end
+  #   redirect_to admin_users_path
+  # end
+
   private
+
   def set_user
     @user = User.find(params[:id])
   end

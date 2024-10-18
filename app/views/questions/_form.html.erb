@@ -3,30 +3,28 @@
     <div class="col-md-8 offset-md-2">
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title"><%= @question.persisted? ? "Edit Question" : "New Question" %></h2>
+          <h2 class="card-title"><%= @question.persisted? ? t('actions.edit_resource', resource: t('resources.question')) : t('actions.create_resource', resource: t('resources.question')) %></h2>
         </div>
         <div class="card-body">
           <%= render 'shared/errors', resource: @question %>       
           <%= form_with model: @question, local: true, class: "needs-validation" do |f| %>
             <div class="mb-3">
-              <%= f.label :title, class: "form-label" %>
-              <%= f.text_field :title, class: "form-control #{'is-invalid' if @question.errors[:title].any?}", placeholder: "Enter the title" %>
+              <%= f.label :title, t('resources.title'), class: "form-label" %>
+              <%= f.text_field :title, class: "form-control #{'is-invalid' if @question.errors[:title].any?}", placeholder: t('actions.enter_resource', resource: t('resources.title')) %>
               <%= render 'shared/errors_resource_entity', resource: @question, resource_entity: :title %> 
             </div>
             <div class="mb-3">
-              <%= f.label :body, class: "form-label" %>
-              <%= f.text_area :body, class: "form-control #{'is-invalid' if @question.errors[:body].any?}", placeholder: "Enter the details of your question" %>
+              <%= f.label :body, t('resources.body'), class: "form-label" %>
+              <%= f.text_area :body, class: "form-control #{'is-invalid' if @question.errors[:body].any?}", placeholder: t('actions.enter_resource', resource: t('resources.body')) %>
               <%= render 'shared/errors_resource_entity', resource: @question, resource_entity: :body %>
             </div>
             <div class="d-grid gap-2">
               <div class="col-md-6">
-                <%= f.submit @question.persisted? ? "Edit Question" : "Submit Question", class: "btn btn-primary btn-block" %>
+                <%= f.submit t('actions.submit'), class: "btn btn-primary btn-block" %>
+                <%= link_to t('actions.back_to', resource: t('resources.questions')), questions_path, class: 'btn btn-secondary' %>
               </div>
             </div>
           <% end %>
-          <div class="mt-3">
-            <%= link_to 'Back', questions_path, class: 'btn btn-secondary' %>
-          </div>
         </div>
       </div>
     </div>

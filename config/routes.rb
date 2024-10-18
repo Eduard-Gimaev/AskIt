@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   end
 
   root "pages#index"
+  get 'set_locale/:locale', to: 'locales#set_locale', as: :set_locale
+  
   namespace :admin do
     resources :users
   end
+
+  
 
   # get 'sign_up', to: 'users#new', as: 'sign_up'
   # get 'sign_in', to: 'sessions#new', as: 'sign_in'

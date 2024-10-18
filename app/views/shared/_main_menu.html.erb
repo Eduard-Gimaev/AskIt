@@ -10,22 +10,51 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <%= nav_tab "Home", root_path, class: "nav-link", current_page: current_page %>
+                <%= nav_tab t('actions.home'), root_path, class: "nav-link", current_page: current_page %>
               </li>
               <li class="nav-item">
-                <%= nav_tab "Questions", questions_path, class: "nav-link", current_page: current_page %>
+                <%= nav_tab t('resources.questions'), questions_path, class: "nav-link", current_page: current_page %>
               </li>
               <li class="nav-item">
-                <%= nav_tab "New Question", new_question_path, class: "nav-link", current_page: current_page %>
+                <%= nav_tab t('actions.ask_question'), new_question_path, class: "nav-link", current_page: current_page %>
               </li>
               <li class="nav-item">
-                <%= nav_tab "About", "#", class: "nav-link", current_page: current_page %>
+                <%= nav_tab t('resources.about'), "#", class: "nav-link", current_page: current_page %>
               </li>
               <li class="nav-item">
-                <%= nav_tab "Contacts", "#", class: "nav-link", current_page: current_page %>
+                <%= nav_tab t('resources.contacts'), "#", class: "nav-link", current_page: current_page %>
               </li>
             </ul>
+
             <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown d-flex align-items-center">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-globe"></i> <%= I18n.t("languages.#{I18n.locale}") %>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                 <li>
+                    <%= link_to set_locale_path(locale: 'en'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-gb"></span> <%= I18n.t('languages.en') %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_locale_path(locale: 'ru'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-ru"></span> <%= I18n.t('languages.ru') %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_locale_path(locale: 'es'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-es"></span> <%= I18n.t('languages.es') %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_locale_path(locale: 'ar'), class: "dropdown-item" do %>
+                      <span class="flag-icon flag-icon-sa"></span> <%= I18n.t('languages.ar') %>
+                    <% end %>
+                  </li>
+                </ul>
+              </li>
+
               <% if user_signed_in? %>
               <li class="nav-item dropdown d-flex align-items-center">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,26 +62,26 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <li>
-                    <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
+                    <%= link_to t('actions.edit_profile'), edit_user_path(current_user), class: "dropdown-item" %>
                   </li>
                   <li>
-                    <%= link_to "My Questions", "#", class: "dropdown-item" %>
+                    <%= link_to t('actions.my_questions'), "#", class: "dropdown-item" %>
                   </li>
                   <li>
-                    <%= link_to "My Answers", "#", class: "dropdown-item" %>
+                    <%= link_to t('actions.my_answers'), "#", class: "dropdown-item" %>
                   </li>
                   <Li><hr class="dropdown-divider"></Li>
                   <li>
-                    <%= link_to "Sign Out", session_path(current_user), data: { turbo_method: :delete }, class: "dropdown-item" %>
+                    <%= link_to t('actions.signout'), session_path(current_user), data: { turbo_method: :delete }, class: "dropdown-item" %>
                   </li>
                 </ul>
               </li>
               <% else %>
                 <li class="nav-item">
-                  <%= nav_tab "Sign In", new_session_path, class: "nav-link", current_page: current_page %> 
+                  <%= nav_tab t('actions.signin'), new_session_path, class: "nav-link", current_page: current_page %> 
                 </li>
                 <li class="nav-item">
-                  <%= nav_tab "Sign Up", new_user_path, class: "nav-link", current_page: current_page %>
+                  <%= nav_tab t('actions.signup'), new_user_path, class: "nav-link", current_page: current_page %>
                 </li>
               <% end %>
             </ul>

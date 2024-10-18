@@ -17,9 +17,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      flash[:notice] = "Question was successfully created."
+      flash[:notice] = t('flash.success_create', resource: t('resources.question'))
       redirect_to questions_path
     else
+      flash[:alert] = t('flash.failure_create', resource: t('resources.question'))
       render :new, status: :unprocessable_entity
     end
   end
@@ -29,22 +30,21 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      flash[:notice] = "Question was successfully updated."
+      flash[:notice] = t('flash.success_update', resource: t('resources.question'))
       redirect_to questions_path
     else
-      flash.now[:alert] = "There was an error updating the question."
+      flash[:alert] = t('flash.failure_update', resource: t('resources.question'))
       render :edit
     end
   end
 
   def destroy
     if @question.destroy
-      flash[:notice] = "Question was successfully deleted."
-      redirect_to questions_path
+      flash[:notice] = t('flash.success_destroy', resource: t('resources.question'))
     else
-      flash[:alert] = "There was an error deleting the question."
-      redirect_to questions_path
+      flash[:alert] = t('flash.failure_destroy', resource: t('resources.question'))
     end
+    redirect_to questions_path
   end
 
   private
