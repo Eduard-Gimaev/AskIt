@@ -7,15 +7,16 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = @question.answers.order(created_at: :desc).page(params[:page]).per(3)
+    @answers = @question.answers.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new
     @question = Question.new
+    @question.user = current_user
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       flash[:notice] = t('flash.success_create', resource: t('resources.question'))
       redirect_to questions_path

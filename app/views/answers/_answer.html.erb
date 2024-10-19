@@ -1,20 +1,19 @@
- <% if question.answers.any? %>
-      <% question.answers.each do |answer| %>
-        <%= tag.article class: "card mt-3", id: dom_id(answer) do %>
-          <div class="card-body">
-            <section class="card-text">
-              <time class="text-muted" datetime="<%= answer.created_at.iso8601 %>">
-                <small><%= answer.created_at.strftime('%Y-%m-%d %H:%M:%S') %></small>
-              </time>
-              <div class="my-2">
-                <%= sanitize answer.body %>
-              </div>
-            </section>
-            <div class="d-flex justify-content-left">
-              <%= link_to t('actions.edit'), edit_question_answer_path(question, answer), class: "btn btn-warning btn-sm mx-1" %>
-              <%= button_to t('actions.delete'), question_answer_path(question, answer), method: :delete, data: { turbo_method: :delete, turbo_confirm: t('actions.are_you_sure?') }, class: "btn btn-danger btn-sm mx-1" %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
+<%= tag.article class: "card mt-3", id: dom_id(answer) do %>
+  <div class="card-header">
+    <h5><%= answer.user.decorate.name_or_email %></h5>
+  </div>
+  <div class="card-body">
+    <section class="card-text">
+      <time class="text-muted" datetime="<%= answer.created_at.iso8601 %>">
+        <small><%= answer.created_at.strftime('%Y-%m-%d %H:%M:%S') %></small>
+      </time>
+      <div class="my-2">
+        <%= sanitize answer.body %>
+      </div>
+    </section>
+    <div class="d-flex justify-content-left">
+      <%= link_to t('actions.edit'), edit_question_answer_path(@question, answer), class: "btn btn-warning btn-sm mx-1" %>
+      <%= button_to t('actions.delete'), question_answer_path(@question, answer), method: :delete, data: { turbo_method: :delete, turbo_confirm: t('actions.are_you_sure?') }, class: "btn btn-danger btn-sm mx-1" %>
+    </div>
+  </div>
+<% end %>

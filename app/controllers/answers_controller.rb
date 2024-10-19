@@ -1,15 +1,17 @@
 class AnswersController < ApplicationController
   include ActionView::RecordIdentifier
-
+  before_action :authenticate_user!, except: [:show]
   before_action :set_question, only: [ :new, :create ]
   before_action :set_answer, only: [ :show, :edit, :update, :destroy ]
 
   def new
     @answer = @question.answers.new
+    @answer.user = current_user
   end
 
   def create
-    @answer = @question.answers.new(answer_params)
+    @answer = current_user.answers.new(answer_params)
+    @answer.question = @question
 
     if @answer.save
        flash[:notice] = t('flash.success_create', resource: t('resources.answer'))
@@ -47,11 +49,11 @@ class AnswersController < ApplicationController
   private
 
   def set_question
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:question_id]).decorate
   end
 
   def set_answer
-    @answer = Answer.find(params[:id])
+    @answer = Answer.find(params[:id]).decorate
   end
 
   def answer_params

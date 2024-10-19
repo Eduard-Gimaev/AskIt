@@ -1,6 +1,9 @@
 <div class="container mt-4">
   <!-- <h1 class="text-center bg-primary text-white py-3 mb-4 shadow-sm rounded">Question Details</h1> -->
   <article class="card mt-3">
+    <div class="card-header">
+      <h5><%= @question.user.decorate.name_or_email %></h5>
+    </div>
     <div class="card-body">
       <h4><%= @question.title %></h4>
       <section class="card-text">
@@ -21,8 +24,12 @@
 
   <div class="mt-4">
     <%= link_to t('actions.add_resource', resource: t('resources.answer')), new_question_answer_path(@question), class: 'btn btn-primary' %>
+    <%= link_to t('actions.back_to', resource: t('resources.questions')), questions_path, class: 'btn btn-secondary' %>
   </div>
-  <%= paginate @answers %>
-  <%= render partial: 'answers/answer', collection: @question.answers, as: :answer, locals: { question: @question } %>
 
-</div>
+  <%= paginate @answers if @answers.any? %> 
+  <div class="mt-3">
+    <%= render @answers if @answers.any? %> 
+  </div>
+  
+</div>  
