@@ -2,10 +2,17 @@
 
 <%= currently_at t('resources.questions') %>
 
+
 <%= paginate(@questions) if @questions.total_pages > 1 %>
 
 <% @questions.each do |question| %>
   <article class="card mt-3">
+    <div class="card-header">
+
+
+      <h5>
+       <%= question.user.decorate.name_or_email %></h5>
+    </div>
     <div class="card-body">
       <h4><%= question.title %></h4>
       <section class="card-text">
