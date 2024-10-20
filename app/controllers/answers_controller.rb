@@ -10,8 +10,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = current_user.answers.new(answer_params)
-    @answer.question = @question
+    @answer = @question.answers.new(answer_create_params)
 
     if @answer.save
        flash[:notice] = t('flash.success_create', resource: t('resources.answer'))
@@ -26,7 +25,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if @answer.update(answer_params)
+    if @answer.update(answer_update_params)
       flash[:notice] = t('flash.success_update', resource: t('resources.answer'))
       redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
@@ -56,7 +55,11 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id]).decorate
   end
 
-  def answer_params
+  def answer_create_params
+    params.require(:answer).permit(:body).merge(user_id: current_user.id)
+  end
+  def answer_update_params
     params.require(:answer).permit(:body)
   end
+
 end
