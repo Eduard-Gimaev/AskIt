@@ -1,0 +1,26 @@
+class CommentsController < ApplicationController
+  before_action :set_commentable!
+
+  def create
+    @comment = @commentable.comments.build(comment_params)
+
+    if @comment.save
+      redirect_to @commentable, notice: t('flash.success_create', resource: t('resources.comment'))
+    else
+      flash.now[:alert] = t('flash.failure_create', resource: t('resources.comment'))
+      render 'comments/form', locals: { commentable: @commentable, comment: @comment }
+    end
+  end
+
+  private
+
+  def set_commentable!
+    klass = [Question, Answer].detect { |c| params["#{c.name.underscore}_id"] }
+    raise ActionController::RoutingError, 'Not Found' unless klass
+    @commentable = klass.find(params["#{klass.name.underscore}_id"])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body).merge(user_id: current_user.id)
+  end
+end

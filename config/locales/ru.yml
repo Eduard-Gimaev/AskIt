@@ -84,6 +84,8 @@ ru:
     question: "Вопрос"
     answer: "Ответ"
     session: "Сессия"
+    comment: "Комментарий"
+    comments: "Комментарии"
     authentication: "Аутентификация"
     file: "Файл"
     xlsx: "XLSX"
