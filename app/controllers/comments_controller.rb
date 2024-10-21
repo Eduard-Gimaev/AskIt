@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_commentable!
+  before_action :find_comment, only: :destroy
 
   def create
     @comment = @commentable.comments.build(comment_params)
@@ -12,7 +13,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment.destroy
+    redirect_to @commentable, notice: t('flash.success_destroy', resource: t('resources.comment'))
+
+  end
+
   private
+
+  def find_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def set_commentable!
     klass = [Question, Answer].detect { |c| params["#{c.name.underscore}_id"] }
