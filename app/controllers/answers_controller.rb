@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   include ActionView::RecordIdentifier
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [ :show ]
   before_action :set_question, only: [ :new, :create, :show ]
   before_action :set_answer, only: [ :show, :edit, :update, :destroy ]
 
@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_create_params)
     if @answer.save
-       flash.now[:notice] = t('flash.success_create', resource: t('resources.answer'))
+       flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
       render :new, status: :unprocessable_entity
@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_update_params)
-      flash.now[:notice] = t('flash.success_update', resource: t('resources.answer'))
+      flash.now[:notice] = t("flash.success_update", resource: t("resources.answer"))
       redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
       render :edit
@@ -34,10 +34,10 @@ class AnswersController < ApplicationController
   def destroy
     @question = @answer.question
     if @answer.destroy
-      flash.now[:notice] = t('flash.success_destroy', resource: t('resources.answer'))
+      flash.now[:notice] = t("flash.success_destroy", resource: t("resources.answer"))
       redirect_to question_path(@question)
     else
-      flash.now[:alert] = t('flash.failure_destroy', resource: t('resources.answer'))
+      flash.now[:alert] = t("flash.failure_destroy", resource: t("resources.answer"))
       redirect_to question_path(@question)
     end
   end
@@ -58,5 +58,4 @@ class AnswersController < ApplicationController
   def answer_update_params
     params.require(:answer).permit(:body)
   end
-
 end

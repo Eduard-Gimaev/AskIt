@@ -6,4 +6,3 @@ class QuestionDecorator < Draper::Decorator
     object.comments
   end
 end
-

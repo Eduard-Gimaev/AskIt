@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
-      flash.now[:notice] = t('flash.success_create', resource: t('resources.question'))
+      flash.now[:notice] = t("flash.success_create", resource: t("resources.question"))
       redirect_to questions_path
     else
       render :new, status: :unprocessable_entity
@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      flash.now[:notice] = t('flash.success_update', resource: t('resources.question'))
+      flash.now[:notice] = t("flash.success_update", resource: t("resources.question"))
       redirect_to questions_path
     else
       render :edit
@@ -39,9 +39,9 @@ class QuestionsController < ApplicationController
 
   def destroy
     if @question.destroy
-      flash.now[:notice] = t('flash.success_destroy', resource: t('resources.question'))
+      flash.now[:notice] = t("flash.success_destroy", resource: t("resources.question"))
     else
-      flash.now[:alert] = t('flash.failure_destroy', resource: t('resources.question'))
+      flash.now[:alert] = t("flash.failure_destroy", resource: t("resources.question"))
     end
     redirect_to questions_path
   end

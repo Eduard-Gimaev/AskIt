@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   root "pages#index"
-  get 'set_locale/:locale', to: 'locales#set_locale', as: :set_locale
-  
+  get "set_locale/:locale", to: "locales#set_locale", as: :set_locale
+
   resources :sessions
   resources :users
 
   resources :questions do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [ :create, :destroy ]
     resources :answers
   end
 
   resources :answers do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [ :create, :destroy ]
   end
-  
+
   namespace :admin do
     resources :users
   end

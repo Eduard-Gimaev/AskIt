@@ -46,7 +46,7 @@ gem "caxlsx_rails", "~> 0.5" # Excel files
 gem "rubyXL", "~> 3.4" # Excel files
 gem "activerecord-import", "~> 1.0" # Bulk insert
 gem "rails-i18n", "~> 7.0" # Internationalization
-gem 'sassc-rails', '>= 2.1.2' # SASS
+gem "sassc-rails", ">= 2.1.2" # SASS
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
