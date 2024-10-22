@@ -1,6 +1,6 @@
-<% if resource.errors.any? %>
+<% if resource&.errors&.any? %>
   <div class="alert alert-danger">
-    <h5 class="alert-heading">Please correct the following errors:</h5>
+    <h5 class="alert-heading"><%= t('errors.template.header') %></h5>
     <ul>
       <% resource.errors.full_messages.each do |message| %>
         <li><%= message %></li>

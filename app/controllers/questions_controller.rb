@@ -3,11 +3,11 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @questions = Question.all.order(created_at: :desc).page(params[:page]).per(5)
+    @questions = Question.includes(:user, :answers).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show
-    @answers = @question.answers.order(created_at: :desc).page(params[:page]).per(5)
+    @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new
@@ -18,10 +18,9 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
-      flash[:notice] = t('flash.success_create', resource: t('resources.question'))
+      flash.now[:notice] = t("flash.success_create", resource: t("resources.question"))
       redirect_to questions_path
     else
-      flash[:alert] = t('flash.failure_create', resource: t('resources.question'))
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,19 +30,18 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      flash[:notice] = t('flash.success_update', resource: t('resources.question'))
+      flash.now[:notice] = t("flash.success_update", resource: t("resources.question"))
       redirect_to questions_path
     else
-      flash[:alert] = t('flash.failure_update', resource: t('resources.question'))
       render :edit
     end
   end
 
   def destroy
     if @question.destroy
-      flash[:notice] = t('flash.success_destroy', resource: t('resources.question'))
+      flash.now[:notice] = t("flash.success_destroy", resource: t("resources.question"))
     else
-      flash[:alert] = t('flash.failure_destroy', resource: t('resources.question'))
+      flash.now[:alert] = t("flash.failure_destroy", resource: t("resources.question"))
     end
     redirect_to questions_path
   end
@@ -51,7 +49,7 @@ class QuestionsController < ApplicationController
   private
 
   def set_question
-    @question = Question.find(params[:id]).decorate
+     @question = Question.includes(:user).find(params[:id]).decorate
   end
 
   def question_params

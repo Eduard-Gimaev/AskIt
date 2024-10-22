@@ -26,7 +26,6 @@ gem "bootstrap", "~> 5.3.3"
 gem "kaminari", "~> 1.2.2"
 gem "draper", "~> 4.0"
 
-
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -47,7 +46,7 @@ gem "caxlsx_rails", "~> 0.5" # Excel files
 gem "rubyXL", "~> 3.4" # Excel files
 gem "activerecord-import", "~> 1.0" # Bulk insert
 gem "rails-i18n", "~> 7.0" # Internationalization
-gem 'sassc-rails', '>= 2.1.2' # SASS
+gem "sassc-rails", ">= 2.1.2" # SASS
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -68,6 +67,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "bullet" # N+1 queries
 end
 
 group :test do

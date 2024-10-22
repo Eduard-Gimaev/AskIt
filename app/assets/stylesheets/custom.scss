@@ -6,3 +6,15 @@
   display: block;
   color: #dc3545; // Bootstrap's red color for invalid feedback
 }
+
+.custom-dropdown-menu {
+  max-width: 100%;
+  font-size: 0.75em;
+  line-height: 1.2;
+}
+
+.dropdown-content {
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 0.5em;
+}

@@ -7,7 +7,7 @@ module Authentication
 
     def authenticate_user!
       unless user_signed_in?
-        flash.now[:alert] = t('flash.sign_in_required')
+        flash.now[:alert] = t("flash.sign_in_required")
         render "sessions/new", status: :unauthorized
       end
     end

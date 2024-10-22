@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [ :show, :edit, :update ]
 
   def index
-    @users = User.all.order(created_at: :desc).page(params[:page]).per(5)
+    @users = User.order(created_at: :desc).page(params[:page]).per(5)
 
     respond_to do |format|
       format.html { render :index }
@@ -18,14 +18,14 @@ class Admin::UsersController < ApplicationController
   def create
     if params[:file].present?
       UserBulkService.call(params[:file])
-      flash[:notice] = t('flash.success_upload', resource: t('resources.file'))
+      flash[:notice] = t("flash.success_upload", resource: t("resources.file"))
     else
       @user = User.new(user_params)
        if @user.save
-        flash[:notice] = t('flash.success_create', resource: t('resources.user'))
-      else
-        flash[:alert] = t('flash.failure_create', resource: t('resources.user'))
-      end
+        flash[:notice] = t("flash.success_create", resource: t("resources.user"))
+       else
+        flash[:alert] = t("flash.failure_create", resource: t("resources.user"))
+       end
     end
       redirect_to admin_users_path
   end
@@ -38,10 +38,10 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = t('flash.success_update', resource: t('resources.user'))
+      flash[:notice] = t("flash.success_update", resource: t("resources.user"))
       redirect_to admin_user_path(@user)
     else
-      flash[:alert] = t('flash.failure_update', resource: t('resources.user'))
+      flash[:alert] = t("flash.failure_update", resource: t("resources.user"))
       render :edit, status: :unprocessable_entity
     end
   end

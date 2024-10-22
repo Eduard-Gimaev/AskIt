@@ -1,0 +1,22 @@
+<%= tag.div class: "comment d-flex align-items-center", style: "width: 100%;" do %>
+  <span class="author me-2" style="font-size: 0.75em; line-height: 1.2;"><%= comment.user.decorate.name_or_email %></span>
+  <span class="date text-muted me-2" style="font-size: 0.75em; line-height: 1.2; white-space: nowrap;"><%= comment.created_at.strftime('%d %b %Y, %H:%M') %></span>
+  
+  <div class="dropdown flex-grow-1">
+    <a class="dropdown-toggle text-decoration-none d-flex align-items-center" 
+    href="#" role="button" id="dropdownMenuLink-<%= comment.id %>" data-bs-toggle="dropdown" aria-expanded="false" 
+    style="font-size: 0.75em; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; display: block;">
+      <span class="dropdown-caret me-1"></span>
+      <span class="text-truncate" style="flex-grow: 1; display: inline-block;">
+        <%= truncate(sanitize(comment.body), length: 30) %>
+      </span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink-<%= comment.id %>", style="max-width: 100%; font-size: 0.75em; line-height: 1.2;">
+      <li style="white-space: normal; word-wrap: break-word; padding: 0.5em;">
+        <%= truncate(sanitize(comment.body), length: 1000) %>
+      </li>
+      <li><%= link_to t('actions.show'), polymorphic_path([comment.commentable, comment]), class: "dropdown-item" %></li>
+      <li><%= button_to t('actions.delete'), polymorphic_path([comment.commentable, comment]), method: :delete, data: { turbo_confirm: t('actions.are_you_sure?') }, class: "dropdown-item" %></li>
+    </ul>
+  </div>
+<% end %>

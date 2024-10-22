@@ -7,10 +7,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = t('flash.users.create.success')
+      flash.now[:notice] = t("flash.users.create.success")
       redirect_to root_path
     else
-      flash.now[:alert] = t('flash.users.create.failure')
+      flash.now[:alert] = t("flash.users.create.failure")
       render :new, status: :unprocessable_entity
     end
   end
@@ -21,19 +21,19 @@ class UsersController < ApplicationController
   end
   def update
     if @user.update(user_params)
-      flash[:notice] = t('flash.users.update.success')
+      flash.now[:notice] = t("flash.users.update.success")
       redirect_to root_path
     else
-      flash.now[:alert] = t('flash.users.update.failure')
+      flash.now[:alert] = t("flash.users.update.failure")
       render :edit, status: :unprocessable_entity
     end
   end
   def destroy
     if @user.destroy
-      flash[:notice] = t('flash.users.destroy.success')
+      flash.now[:notice] = t("flash.users.destroy.success")
       redirect_to users_path
     else
-      flash[:alert] = t('flash.users.destroy.failure')
+      flash.now[:alert] = t("flash.users.destroy.failure")
       redirect_to @user
     end
   end

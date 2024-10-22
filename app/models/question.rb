@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  include Commentable
+
   belongs_to :user
   has_many :answers, dependent: :destroy
 

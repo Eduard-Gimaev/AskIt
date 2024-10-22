@@ -1,5 +1,12 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-import "bootstrap"
-import { createPopper } from "@popperjs/core"
+import * as bootstrap from "bootstrap"
+import "bootstrap-icons/font/bootstrap-icons.css"
+import "stylesheets/application"
+
+// Инициализация всех элементов с классом .collapse
+document.addEventListener("turbo:load", () => {
+  document.querySelectorAll('.collapse').forEach((collapseElement) => {
+    new bootstrap.Collapse(collapseElement)
+  })
+})
