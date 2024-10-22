@@ -16,7 +16,6 @@
         <%= truncate(sanitize(comment.body), length: 1000) %>
       </li>
       <li><%= link_to t('actions.show'), polymorphic_path([comment.commentable, comment]), class: "dropdown-item" %></li>
-      <li><%= link_to t('actions.edit'), edit_polymorphic_path([comment.commentable, comment]), class: "dropdown-item" %></li>
       <li><%= button_to t('actions.delete'), polymorphic_path([comment.commentable, comment]), method: :delete, data: { turbo_confirm: t('actions.are_you_sure?') }, class: "dropdown-item" %></li>
     </ul>
   </div>

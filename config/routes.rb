@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :questions do
-    resources :comments
+    resources :comments, only: [:create, :destroy]
     resources :answers
   end
 
   resources :answers do
-    resources :comments
+    resources :comments, only: [:create, :destroy]
   end
   
   namespace :admin do

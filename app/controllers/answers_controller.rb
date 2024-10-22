@@ -12,10 +12,9 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_create_params)
     if @answer.save
-       flash[:notice] = t('flash.success_create', resource: t('resources.answer'))
+       flash.now[:notice] = t('flash.success_create', resource: t('resources.answer'))
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
-      flash[:alert] = t('flash.failure_create', resource: t('resources.answer'))
       render :new, status: :unprocessable_entity
     end
   end
@@ -25,10 +24,9 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_update_params)
-      flash[:notice] = t('flash.success_update', resource: t('resources.answer'))
+      flash.now[:notice] = t('flash.success_update', resource: t('resources.answer'))
       redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
-      flash[:alert] = t('flash.failure_update', resource: t('resources.answer'))
       render :edit
     end
   end
@@ -36,10 +34,10 @@ class AnswersController < ApplicationController
   def destroy
     @question = @answer.question
     if @answer.destroy
-      flash[:notice] = t('flash.success_destroy', resource: t('resources.answer'))
+      flash.now[:notice] = t('flash.success_destroy', resource: t('resources.answer'))
       redirect_to question_path(@question)
     else
-      flash[:alert] = t('flash.failure_destroy', resource: t('resources.answer'))
+      flash.now[:alert] = t('flash.failure_destroy', resource: t('resources.answer'))
       redirect_to question_path(@question)
     end
   end

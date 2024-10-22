@@ -1,14 +1,5 @@
-<%= provide :title, t('actions.ask_question') %>
+<%= provide :page_title, t('actions.new_resource', resource: t('resources.question')) %>
 
 <%= currently_at t('actions.ask_question') %>
 
-<div class="container mt-4">
-  <div class="card">
-    <div class="card-header">
-      <h2><%= provide :title, t('actions.new_resource', resource: t('resources.question')) %></h2>
-    </div>
-    <div class="card-body">
-      <%= render 'form'%>
-    </div>
-  </div>
-</div>
+<%= render 'form'%>

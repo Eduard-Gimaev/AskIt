@@ -1,7 +1,9 @@
 <% if resource&.errors[resource_entity]&.any? %>
   <div class="invalid-feedback">
-    <% resource.errors.full_messages_for(resource_entity).each do |message| %>
-     <%= message %><br>
-    <% end %>
+    <ul>
+      <% resource.errors.full_messages_for(resource_entity).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>

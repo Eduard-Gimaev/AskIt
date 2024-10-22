@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       remember_user(user) if params[:remember_me] == "1"
       redirect_to root_path, notice: t('flash.success_sign_in', name: current_user.decorate.name_or_email)
     else
-      flash[:alert] = t('flash.failure', resource: t('resources.session'))
+      flash.now[:alert] = t('flash.failure', resource: t('resources.session'))
       render :new, status: :unauthorized
     end
   end

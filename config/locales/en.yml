@@ -1,13 +1,16 @@
 en:
+  languages:
+      en: "English"
+      ru: "Русский"
+      es: "Español"
+      ar: "العربية"
   welcome:
     title: "Welcome to AskIt"
     lead: "Your go-to platform for asking and answering questions. Join our community and share your knowledge!"
     get_started: "Get started by exploring questions or asking your own."
-  languages:
-    en: "English"
-    ru: "Русский"
-    es: "Español"
-    ar: "العربية"
+  errors:
+    template:
+      header: "Please correct the following errors:"  
   actions:
     home: "Home"
     Questions: "Questions"
