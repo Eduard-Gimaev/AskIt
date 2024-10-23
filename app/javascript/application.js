@@ -3,6 +3,9 @@ import "controllers"
 import * as bootstrap from "bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "stylesheets/application"
+import "jquery"
+import "./select2_init"
+
 
 // Инициализация всех элементов с классом .collapse
 document.addEventListener("turbo:load", () => {
