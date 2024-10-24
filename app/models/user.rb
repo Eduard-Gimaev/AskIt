@@ -1,13 +1,16 @@
 class User < ApplicationRecord
-  attr_accessor :current_password, :remember_token
+  enum role: { user: 0, admin: 1, moderator: 2 }, _suffix: :role
+
+  attr_accessor :current_password, :remember_token, :admin_edit
 
   has_secure_password validations: false
 
+  validates :role, presence: true
   validates :email, presence: true, uniqueness: true, 'valid_email2/email': true
   validates :password, presence: true, length: { minimum: 4 }, if: :password_required?, allow_blank: true
   validates :password_confirmation, presence: true, if: :password_required?
   validate :password_complexity, if: :password_required?
-  validate :current_password_is_correct, if: :current_password_required?, on: :update, if: -> { password.present? }
+  validate :current_password_is_correct, if: :current_password_required?, on: :update, if: -> { password.present? && !admin_edit }
 
   before_save { email.downcase! }
 

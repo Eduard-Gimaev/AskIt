@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   root "pages#index"
+
+
   get "set_locale/:locale", to: "locales#set_locale", as: :set_locale
 
-  resources :sessions
-  resources :users
+  resources :sessions, only: [ :new, :create, :destroy ]
+  resources :users, only: [ :new, :create, :edit, :update ]
 
   resources :questions do
     resources :comments, only: [ :create, :destroy ]
-    resources :answers
+    resources :answers, only: [ :create, :destroy ]
   end
 
   resources :answers do
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users
+    resources :users, only: [ :new, :create, :index, :show, :edit, :update, :destroy ]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

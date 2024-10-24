@@ -18,6 +18,8 @@ en:
     ask_question: "Ask Question"
     new_resource: "New %{resource}"
     registration: "Registration"
+    register: "Register"
+    save: "Save"
     signup: "Sign up"
     signin: "Sign in"
     signout: "Sign out"
@@ -50,6 +52,7 @@ en:
   resources:
     about: "About"
     contacts: "Contacts"
+    role: "Role"
     admin: "Admin"
     user: "User"
     users: "Users"

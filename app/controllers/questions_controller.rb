@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_question, only: [ :show, :edit, :update, :destroy ]
-  before_action :fetch_tags, only: %i[index new edit]
+  before_action :fetch_tags, only: %i[index new create edit]
 
   def index
     tag_ids = params[:tag_ids] || []

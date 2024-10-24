@@ -1,37 +1,39 @@
 <%= form_with(model: [:admin, @user], local: true) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h4><%= pluralize(@user.errors.count, t('resource.error')) %> <%= t('flash.prohibited', resource: t('resource.user')) %>:</h4>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+<%= render 'shared/errors', resource: @user %>  
+
+  <div class="form-group">
+    <%= f.label :role, t('resources.role') %>
+    <%= f.select :role, User.roles.keys, {}, class: "form-control" %>
+    <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :role %>
+  </div>
 
   <div class="form-group">
      <%= f.label :name, t('resources.name') %>
     <%= f.text_field :name, class: "form-control" %>
+    <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :name %> 
   </div>
 
   <div class="form-group">
     <%= f.label :email, t('resources.email') %>
     <%= f.email_field :email, class: "form-control" %>
+     <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :email %>
   </div>
 
   <div class="form-group">
     <%= f.label :password, t('resources.password')  %>
     <%= f.password_field :password, class: "form-control" %>
+    <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password %>
   </div>
 
   <div class="form-group">
     <%= f.label :password_confirmation, t('resources.password_confirmation')  %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
+    <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password_confirmation %>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.submit t('actions.submit'), class: "btn btn-primary btn-block" %>
+    <%= f.submit @user.persisted? ? t('actions.save') : t('actions.register'), class: "btn btn-primary btn-block" %>
     <%= link_to t('actions.back_to', resource: t('resources.users')), admin_users_path, class: 'btn btn-secondary' %>
   </div>
 <% end %>

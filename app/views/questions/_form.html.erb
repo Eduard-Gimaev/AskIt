@@ -21,7 +21,7 @@
              <div class="mb-3">
                 <div class="form-group">
                   <%= f.label :tag_ids, 'Tags:' %>
-                  <%= f.collection_select :tag_ids, tags, :id, :title, {}, { multiple: true, class: "form-control js-multiple-select w-100", data: { placeholder: "Select tags" } } %>
+                  <%= f.collection_select :tag_ids, @tags, :id, :title, {}, { multiple: true, class: "form-control js-multiple-select w-100", data: { placeholder: "Select tags" } } %>
                 </div>
               </div>
             <div class="d-grid gap-2">

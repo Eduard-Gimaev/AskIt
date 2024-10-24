@@ -18,6 +18,8 @@ ru:
     ask_question: "Задать вопрос"
     new_resource: "Новый %{resource}"
     registration: "Регистрация"
+    register: "Зарегистрироваться"
+    save: "Сохранить"
     signup: "Зарегистрироваться"
     signin: "Войти"
     signout: "Выйти"
@@ -50,6 +52,7 @@ ru:
   resources:
     about: "О нас"
     contacts: "Контакты"
+    role: "Роль"
     admin: "Администратор"
     user: "Пользователь"
     users: "Пользователи"
