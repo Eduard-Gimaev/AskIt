@@ -2,16 +2,6 @@
 
 <%= currently_at t('resources.questions') %>
 
-<section>
-  <%= form_with url: questions_path, method: :get, local: true do |f| %>
-    <div class="mb-3">
-      <%= f.collection_select :tag_ids, @tags, :id, :title, { selected: params[:tag_ids] },
-                              { multiple: true, required: true, class: "form-control js-multiple-select" } %>
-      <button type="submit" class="btn btn-primary">Search</button>
-    </div>
-  <% end %>
-</section>
-
 <%= paginate(@questions) if @questions.total_pages > 1 %>
 <% @questions.each do |question| %>
   <article class="card mt-3">
