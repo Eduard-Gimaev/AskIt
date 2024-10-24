@@ -17,7 +17,9 @@ es:
     explore_questions: "Explorar Preguntas"
     ask_question: "Hacer una Pregunta"
     new_resource: "Nuevo %{resource}"
-    registration: "Registro"
+    registration: "Registración"
+    register: "Registrarse"
+    save: "Guardar"
     signup: "Registrarse"
     signin: "Iniciar sesión"
     signout: "Cerrar sesión"
@@ -50,6 +52,7 @@ es:
   resources:
     about: "Acerca de"
     contacts: "Contactos"
+    role: "Rol"
     admin: "Administrador"
     user: "Usuario"
     users: "Usuarios"

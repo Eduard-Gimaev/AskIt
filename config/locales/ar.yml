@@ -18,6 +18,8 @@ ar:
     ask_question: "طرح سؤال"
     new_resource: "جديد %{resource}"
     registration: "التسجيل"
+    register: "تسجيل"
+    save: "حفظ"
     signup: "التسجيل"
     signin: "تسجيل الدخول"
     signout: "تسجيل الخروج"
@@ -50,6 +52,7 @@ ar:
   resources:
     about: "حول"
     contacts: "جهات الاتصال"
+    role: "الدور"
     admin: "المسؤول"
     user: "المستخدم"
     users: "المستخدمون"

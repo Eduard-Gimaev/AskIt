@@ -1,8 +1,8 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [ :show, :edit, :update ]
+  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @users = User.order(created_at: :desc).page(params[:page]).per(5)
+    @users = User.order(updated_at: :desc).page(params[:page]).per(5)
 
     respond_to do |format|
       format.html { render :index }
@@ -23,11 +23,11 @@ class Admin::UsersController < ApplicationController
       @user = User.new(user_params)
        if @user.save
         flash[:notice] = t("flash.success_create", resource: t("resources.user"))
+        redirect_to admin_users_path
        else
-        flash[:alert] = t("flash.failure_create", resource: t("resources.user"))
+        render :new, status: :unprocessable_entity
        end
     end
-      redirect_to admin_users_path
   end
 
   def show
@@ -46,14 +46,15 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # def destroy
-  #   if @user.destroy
-  #     flash[:notice] = t('flash.success_destroy', resource: t('resources.user'))
-  #   else
-  #     flash[:alert] = t('flash.failure_destroy', resource: t('resources.user'))
-  #   end
-  #   redirect_to admin_users_path
-  # end
+  def destroy
+    if @user.destroy
+      flash[:notice] = t("flash.success_destroy", resource: t("resources.user"))
+      redirect_to admin_users_path
+    else
+      flash[:alert] = t("flash.failure_destroy", resource: t("resources.user"))
+      redirect_to admin_users_path
+    end
+  end
 
   private
 
@@ -62,6 +63,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:role, :name, :email, :password, :password_confirmation, :current_password).merge(admin_edit: true)
   end
 end

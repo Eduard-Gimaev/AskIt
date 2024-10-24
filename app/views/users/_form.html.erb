@@ -3,10 +3,18 @@
     <div class="col-md-8 offset-md-2">
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title"><%= @user.persisted? ? t('actions.edit_resource', resource: t('resources.user')) : t('actions.create_resource', resource: t('resources.user')) %></h2>
-        </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <strong class="mr-2"><%= @user.persisted? ? t('actions.edit') : t('resources.new_user') %></strong>
+              <span class="badge bg-light text-secondary rounded-pill d-inline-flex align-items-center"><%= @user.email %></span>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="badge bg-light text-secondary rounded-pill d-inline-flex align-items-center"><%= @user.role if @user.persisted? %></span>
+            </div>
+          </div>
         <div class="card-body">   
           <%= form_with model: @user, local: true, class: "needs-validation" do |f| %>
+            <%= render 'shared/errors', resource: @user %>
             <div class="mb-3">
               <%= f.label :name, t('resources.name'), class: "form-label" %>
               <%= f.text_field :name, class: "form-control #{'is-invalid' if @user.errors[:name].any?}", placeholder: t('actions.enter_resource', resource: t('resources.name')) %>
@@ -37,7 +45,7 @@
             <div class="mt-3">
               <div class="d-grid gap-2">
                 <div class="col-md-6">
-                  <%= f.submit t('actions.submit'), class: "btn btn-primary btn-block" %>
+                  <%= f.submit @user.persisted? ? t('actions.save') : t('actions.register'), class: "btn btn-primary btn-block" %>
                   <%= link_to t('actions.back_to', resource: t('resources.users')), users_path, class: 'btn btn-secondary' %>
                 </div>
               </div>
