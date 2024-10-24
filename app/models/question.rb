@@ -15,5 +15,4 @@ class Question < ApplicationRecord
     questions = questions.distinct
     questions = questions.page(page).per(per_page)
   end
-
 end
