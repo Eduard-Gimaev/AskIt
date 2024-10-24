@@ -1,9 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_question, only: [ :show, :edit, :update, :destroy ]
+  before_action :fetch_tags, only: %i[index new edit]
 
   def index
-    @questions = Question.includes(:user, :answers).order(created_at: :desc).page(params[:page]).per(5)
+    tag_ids = params[:tag_ids] || []
+    @questions = Question.all_by_tags(tag_ids, params[:page], 5)
   end
 
   def show
@@ -53,6 +55,10 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, tag_ids: [])
+  end
+
+  def fetch_tags
+    @tags = Tag.all
   end
 end

@@ -18,6 +18,12 @@
               <%= f.text_area :body, class: "form-control #{'is-invalid' if @question.errors[:body].any?}", placeholder: t('actions.enter_resource', resource: t('resources.body')) %>
               <%= render 'shared/errors_resource_entity', resource: @question, resource_entity: :body %>
             </div>
+             <div class="mb-3">
+                <div class="form-group">
+                  <%= f.label :tag_ids, 'Tags:' %>
+                  <%= f.collection_select :tag_ids, tags, :id, :title, {}, { multiple: true, class: "form-control js-multiple-select w-100", data: { placeholder: "Select tags" } } %>
+                </div>
+              </div>
             <div class="d-grid gap-2">
               <div class="col-md-6">
                 <%= f.submit t('actions.submit'), class: "btn btn-primary btn-block" %>
