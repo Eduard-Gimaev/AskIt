@@ -7,13 +7,18 @@
           <small><%= question.created_at.strftime('%d %b %Y, %H:%M') %></small>
         </time>
       </div>
-      <%= link_to t('actions.edit'), edit_question_path(question), class: "btn btn-warning btn-sm mx-1" %>
-      <%= button_to t('actions.delete'), question_path(question), method: :delete, data: { turbo_method: :delete, turbo_confirm: t('actions.are_you_sure?') }, class: "btn btn-danger btn-sm mx-1" %>
+      <div class="d-flex align-items-center">
+       <% if policy(question).edit? %>
+          <%= link_to t('actions.edit'), edit_question_path(question), class: "btn btn-warning btn-sm mx-1" %>   
+        <% end %>
+         <% if policy(question).destroy? %>
+          <%= button_to t('actions.delete'), question_path(question), method: :delete, data: { turbo_confirm: t('actions.are_you_sure?'), turbo_method: :delete}, class: "btn btn-danger btn-sm mx-1" %>      
+        <% end %>
+      </div>
     </div>
     <div class="card-body">
       <h4><%= question.title %></h4>
       <section class="card-text">
-       
         <div class="my-2">
           <%= sanitize question.body %>
         </div>
@@ -22,9 +27,11 @@
         </div>
 
       </section>
-      <div class= "mt-0">
-        <%= render 'comments/form', commentable: question, comment: @comment %>
-      </div>
+       <% if policy(question).edit? %>
+        <div class= "mt-0">
+          <%= render 'comments/form', commentable: question, comment: @comment %>
+        </div>
+      <% end %>
       <div class="mt-2">
         <%= render question.comments.decorate %>
       </div>
@@ -32,8 +39,7 @@
 
    <div class="mt-4">
       <div class="d-flex">
-        <%= link_to t('actions.add_resource', resource: t('resources.answer')), new_question_answer_path(question), class: 'btn btn-primary mx-1' %>
-        <%= link_to t('actions.back_to', resource: t('resources.questions')), questions_path, class: 'btn btn-secondary mx-1' %>
+        <%= link_to t('actions.back_to', resource: t('resources.questions')), questions_path, class: 'btn btn-primary mx-1' %>
       </div>
     </div>
 

@@ -78,8 +78,6 @@ class User < ApplicationRecord
     p.to_stream.read
   end
 
-
-
   def self.to_zip
     xlsx_data = to_xlsx
 
@@ -89,6 +87,14 @@ class User < ApplicationRecord
     end
     compressed_filestream.rewind
     compressed_filestream.read
+  end
+
+  def author?(resource)
+    resource.user == self
+  end
+
+  def guest?
+    false
   end
 
   private

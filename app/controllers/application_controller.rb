@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
+  include Authorization
   include ErrorHandling
   include Authentication
+  include Authorization
+
 
   before_action :set_locale
 
@@ -14,5 +17,6 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    # @current_user ||= GuestUser.new
   end
 end
