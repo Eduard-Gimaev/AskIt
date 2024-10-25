@@ -84,6 +84,7 @@ ru:
     success_sign_in: "С возвращением, %{name}!"
     success_sign_out: "До скорой встречи, %{name}!"
     sign_in_required: "Вам нужно войти, чтобы продолжить."
+    authorization_required: "У вас нет разрешения на выполнение этого действия."
     failure_create: "Произошла ошибка при создании %{resource}."
     failure_update: "Произошла ошибка при обновлении %{resource}."
     failure_destroy: "Произошла ошибка при удалении %{resource}."

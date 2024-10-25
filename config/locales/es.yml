@@ -84,6 +84,7 @@ es:
     success_sign_in: "Bienvenido de nuevo, %{name}!"
     success_sign_out: "Hasta pronto, %{name}!"
     sign_in_required: "Necesitas iniciar sesión antes de continuar."
+    authorization_required: "No estás autorizado para realizar esta acción."
     failure_create: "Hubo un error al crear %{resource}."
     failure_update: "Hubo un error al actualizar %{resource}."
     failure_destroy: "Hubo un error al eliminar %{resource}."

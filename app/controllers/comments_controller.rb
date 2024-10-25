@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_commentable!
-  before_action :find_comment, only: :destroy
+  before_action :find_comment, only: %i[show edit update destroy]
+  before_action :authorize_question!, except: %i[index show]
 
   def create
     @comment = @commentable.comments.build(comment_params)
@@ -11,6 +12,17 @@ class CommentsController < ApplicationController
       flash.now[:alert] = t("flash.failure_create", resource: t("resources.comment"))
       render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }
     end
+  end
+
+  def show
+  end
+
+  def edit
+    render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }
+  end
+  def update
+   @comment.update(comment_params)
+   redirect_to @commentable, notice: t("flash.success_update", resource: t("resources.comment"))
   end
 
   def destroy

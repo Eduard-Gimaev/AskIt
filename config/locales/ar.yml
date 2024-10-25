@@ -84,6 +84,7 @@ ar:
     success_sign_in: "مرحبًا بعودتك، %{name}!"
     success_sign_out: "أراك قريبًا، %{name}!"
     sign_in_required: "تحتاج إلى تسجيل الدخول قبل المتابعة."
+    authorization_required: "ليس لديك الصلاحية لأداء هذا الإجراء."
     failure_create: "حدث خطأ أثناء إنشاء %{resource}."
     failure_update: "حدث خطأ أثناء تحديث %{resource}."
     failure_destroy: "حدث خطأ أثناء حذف %{resource}."

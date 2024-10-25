@@ -11,7 +11,7 @@
           <%= render 'shared/errors_resource_entity', resource: f.object, resource_entity: :body %>
         </div>
         <div class="form-group mt-2">
-          <%= f.submit t('actions.submit'), class: 'btn btn-primary btn-sm mx-1' %>
+          <%= f.submit f.object.persisted? ? t('actions.save') : t('actions.create'), class: 'btn btn-primary btn-sm mx-1' %>
         </div>
       <% end %>
     </div>

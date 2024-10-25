@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
   before_action :set_question, only: [ :new, :create, :show ]
   before_action :set_answer, only: [ :show, :edit, :update, :destroy ]
+  before_action :authorize_question!, except: %i[index show]
 
   def new
     @answer = @question.answers.new

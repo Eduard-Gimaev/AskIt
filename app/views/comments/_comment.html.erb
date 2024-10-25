@@ -15,8 +15,17 @@
       <li style="white-space: normal; word-wrap: break-word; padding: 0.5em;">
         <%= truncate(sanitize(comment.body), length: 1000) %>
       </li>
-      <li><%= link_to t('actions.show'), polymorphic_path([comment.commentable, comment]), class: "dropdown-item" %></li>
-      <li><%= button_to t('actions.delete'), polymorphic_path([comment.commentable, comment]), method: :delete, data: { turbo_confirm: t('actions.are_you_sure?') }, class: "dropdown-item" %></li>
+   
+      <% if policy(comment).show? %>
+         <hr>
+        <li><%= link_to t('actions.show'), polymorphic_path([comment.commentable, comment]), class: "dropdown-item" %></li>
+      <% end %>
+      <% if policy(comment).edit? %>
+        <li><%= link_to t('actions.edit'), edit_polymorphic_path([comment.commentable, comment]), class: "dropdown-item" %></li>
+      <% end %>
+      <% if policy(comment).destroy? %>
+        <li><%= button_to t('actions.delete'), polymorphic_path([comment.commentable, comment]), method: :delete, data: { turbo_confirm: t('actions.are_you_sure?') }, class: "dropdown-item" %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
