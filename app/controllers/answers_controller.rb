@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
       flash.now[:notice] = t("flash.success_update", resource: t("resources.answer"))
       redirect_to question_path(@answer.question, anchor: dom_id(@answer))
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

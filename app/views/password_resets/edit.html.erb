@@ -1,0 +1,35 @@
+<%= provide :page_title, t('actions.password_reset') %>
+<%= currently_at t('actions.password_reset') %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2><%= t('actions.password_reset') %></h2>
+        </div>
+        <div class="card-body">
+          <%= form_with(model: @user, url: password_reset_path(@user.password_reset_token), method: :patch, local: true) do |f| %>
+            <%= f.hidden_field :password_reset_token, value: @user.password_reset_token %>
+            <%= f.hidden_field :email, value: @user.email %>
+             <div class="mb-3">
+              <%= f.label :password, t('resources.password'), class: "form-label" %>
+              <%= f.password_field :password, class: "form-control #{'is-invalid' if @user.errors[:password].any?}", 
+                                    placeholder: t('actions.enter_resource', resource: t('resources.password')) %>
+              <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :password_confirmation, t('resources.password_confirmation'), class: "form-label" %>
+              <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if @user.errors[:password_confirmation].any?}", 
+                                    placeholder: t('actions.enter_resource', resource: t('resources.password_confirmation')) %>
+              <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password_confirmation %>
+            </div>
+            <div class="d-grid gap-2">
+              <%= f.submit t('actions.submit'), class: "btn btn-primary btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,28 +27,28 @@
             </div>
             <div class="mb-3">
               <%= f.label :password, t('resources.password'), class: "form-label" %>
-              <%= f.password_field :password, class: "form-control #{'is-invalid' if @user.errors[:password].any?}", placeholder: t('actions.enter_resource', resource: t('resources.password')) %>
+              <%= f.password_field :password, class: "form-control #{'is-invalid' if @user.errors[:password].any?}", 
+                                    placeholder: t('actions.enter_resource', resource: t('resources.password')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password %>
             </div>
             <div class="mb-3">
               <%= f.label :password_confirmation, t('resources.password_confirmation'), class: "form-label" %>
-              <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if @user.errors[:password_confirmation].any?}", placeholder: t('actions.enter_resource', resource: t('resources.password_confirmation')) %>
+              <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if @user.errors[:password_confirmation].any?}", 
+                                    placeholder: t('actions.enter_resource', resource: t('resources.password_confirmation')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :password_confirmation %>
             </div>
             <% if @user.persisted? %>
             <div class="mb-3">
               <%= f.label :current_password, t('resources.current_password'), class: "form-label" %>
-              <%= f.password_field :current_password, class: "form-control #{'is-invalid' if @user.errors[:current_password].any?}", placeholder: t('actions.enter_resource', resource: t('resources.current_password')) %>
+              <%= f.password_field :current_password, class: "form-control #{'is-invalid' if @user.errors[:current_password].any?}", 
+                                    placeholder: t('actions.enter_resource', resource: t('resources.current_password')) %>
               <%= render 'shared/errors_resource_entity', resource: @user, resource_entity: :current_password %>
             </div>
             <% end %>
             <div class="mt-3">
-              <div class="d-grid gap-2">
-                <div class="col-md-6">
-                  <%= f.submit @user.persisted? ? t('actions.save') : t('actions.register'), class: "btn btn-primary btn-block" %>
-                  <%= link_to t('actions.back_to', resource: t('resources.users')), users_path, class: 'btn btn-secondary' %>
-                </div>
-              </div>
+            <div class="form-group mt-3">
+              <%= f.submit @user.persisted? ? t('actions.save') : t('actions.register'), class: "btn btn-primary btn-block" %>
+              <%= link_to t('actions.back_to', resource: t('actions.home')), root_path, class: 'btn btn-link' %>
             </div>
           <% end %>
         </div>

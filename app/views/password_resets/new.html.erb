@@ -1,0 +1,20 @@
+<%= provide :page_title, t('actions.password_reset') %>
+<%= currently_at t('actions.password_reset') %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2><%= t('actions.password_reset') %></h2>
+      <%= form_with(url: password_resets_path, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :email, t('resources.email'), class: "form-label" %>
+          <%= f.email_field :email, class: "form-control", placeholder: t('actions.enter_resource', resource: t('resources.email')) %>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+          <%= f.submit t('actions.submit'), class: "btn btn-primary" %>
+          <%= link_to t('actions.back'), new_session_path, class: "btn btn-link" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

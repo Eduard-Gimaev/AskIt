@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get "set_locale/:locale", to: "locales#set_locale", as: :set_locale
 
   resources :sessions, only: [ :new, :create, :destroy ]
+  resources :password_resets, only: [ :new, :create, :edit, :update ]
+  resources :account_activations, only: [ :edit ]
+
+
   resources :users, only: [ :new, :create, :edit, :update ]
 
   resources :questions do

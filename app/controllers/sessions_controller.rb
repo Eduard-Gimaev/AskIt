@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to root_path, notice: t("flash.success_sign_in", name: current_user.decorate.name_or_email)
     else
       flash.now[:alert] = t("flash.failure", resource: t("resources.session"))
-      render :new, status: :unauthorized
+      render :new, status: :unprocessable_entity
     end
   end
 
