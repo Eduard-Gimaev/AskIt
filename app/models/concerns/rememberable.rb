@@ -1,4 +1,4 @@
-module Rememberable 
+module Rememberable
   extend ActiveSupport::Concern
 
   included do

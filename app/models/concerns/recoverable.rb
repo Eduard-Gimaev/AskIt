@@ -4,7 +4,6 @@ module Recoverable
   included do
     before_update :clear_password_reset_token, if: :password_digest_changed?
     def send_password_reset
-      
       generate_token
       PasswordResetMailer.with(user: self).password_reset_via_email.deliver_now
     end
@@ -19,7 +18,7 @@ module Recoverable
 
     private
     def generate_token
-      update_columns(password_reset_token: SecureRandom.urlsafe_base64, 
+      update_columns(password_reset_token: SecureRandom.urlsafe_base64,
               password_reset_sent_at: Time.zone.now)
     end
   end

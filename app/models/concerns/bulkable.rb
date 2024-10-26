@@ -60,5 +60,4 @@ module Bulkable
       compressed_filestream.read
     end
   end
-  
 end
