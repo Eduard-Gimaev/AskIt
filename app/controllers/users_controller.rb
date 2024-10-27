@@ -17,8 +17,10 @@ class UsersController < ApplicationController
 
   def show
   end
+
   def edit
   end
+
   def update
     if @user.update(user_params)
       flash.now[:notice] = t("flash.users.update.success")

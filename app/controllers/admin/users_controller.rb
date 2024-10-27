@@ -63,6 +63,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:role, :name, :email, :password, :password_confirmation, :current_password).merge(admin_edit: true)
+    params.require(:user).permit(:role, :name, :email,
+                                :password, :password_confirmation,
+                                :current_password).merge(admin_edit: true)
   end
 end

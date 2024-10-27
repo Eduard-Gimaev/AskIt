@@ -26,6 +26,7 @@ gem "bootstrap", "~> 5.3.3"
 gem "kaminari", "~> 1.2.2"
 gem "draper", "~> 4.0"
 gem "pundit", "~> 2.1"
+gem "letter_opener", "~> 1.7"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

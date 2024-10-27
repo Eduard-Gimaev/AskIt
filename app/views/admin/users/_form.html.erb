@@ -34,6 +34,6 @@
 
   <div class="form-group mt-3">
     <%= f.submit @user.persisted? ? t('actions.save') : t('actions.register'), class: "btn btn-primary btn-block" %>
-    <%= link_to t('actions.back_to', resource: t('resources.users')), admin_users_path, class: 'btn btn-secondary' %>
+    <%= link_to t('actions.back_to', resource: t('actions.home')), root_path, class: 'btn btn-link' %>
   </div>
 <% end %>
