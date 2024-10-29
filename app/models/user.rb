@@ -30,6 +30,10 @@ class User < ApplicationRecord
     false
   end
 
+  def admin?
+    self.admin_role?
+  end
+
   private
 
   def password_required?

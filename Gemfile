@@ -16,32 +16,24 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-# Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
 # bootrtrap for rails
 gem "bootstrap", "~> 5.3.3"
-# Use Active Storage variant
-# gem "mini_magick", ">= 4.10.0"
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible [
+# Use Kamanari for pagination
 gem "kaminari", "~> 1.2.2"
+# Use draper for decorators
 gem "draper", "~> 4.0"
+# Use pundit for authorization
 gem "pundit", "~> 2.1"
+# Use letter_opener for previewing emails in the browser
 gem "letter_opener", "~> 1.7"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
+# Use ValidEmail2 for email validation
 gem "valid_email2", "~> 5.3" # Email validation
-
 gem "rubyzip", "~> 2.3"  # Zip files
 gem "caxlsx", "~> 4.1" # Excel files
 gem "caxlsx_rails", "~> 0.5" # Excel files
@@ -49,9 +41,10 @@ gem "rubyXL", "~> 3.4" # Excel files
 gem "activerecord-import", "~> 1.0" # Bulk insert
 gem "rails-i18n", "~> 7.0" # Internationalization
 gem "sassc-rails", ">= 2.1.2" # SASS
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+# Use Sidekiq for background processing
+gem "sidekiq", "~> 7.3.4"
+# Use Redis for caching
+gem "redis", "~> 5.3.0"
 
 group :development, :test do
   gem "byebug" # Debugging tool
