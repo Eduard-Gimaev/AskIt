@@ -91,15 +91,16 @@ es:
     success_create: "%{resource} fue creado exitosamente."
     success_update: "%{resource} fue actualizado exitosamente."
     success_destroy: "%{resource} fue eliminado exitosamente."
+    success_upload: "%{resource} fue subido exitosamente."
     success_sign_in: "Bienvenido de nuevo, %{name}!"
     success_sign_out: "Hasta pronto, %{name}!"
     sign_in_required: "Necesitas iniciar sesión antes de continuar."
     authorization_required: "No estás autorizado para realizar esta acción."
+    failure_upload: "Hubo un error al subir %{resource}."
     failure_create: "Hubo un error al crear %{resource}."
     failure_update: "Hubo un error al actualizar %{resource}."
     failure_destroy: "Hubo un error al eliminar %{resource}."
     failure: "Hubo un error al crear %{resource}."
-    file_success: "Archivo subido exitosamente."
     prohibited: "prohibió que este %{resource} se guardara"
   activerecord:
     models:
@@ -132,3 +133,24 @@ es:
       previous: "&lsaquo; Anterior"
       next: "Siguiente &rsaquo;"
       truncate: "&hellip;"
+  admin:
+    user_mailer:
+      bulk_import_email:
+        subject: "Importación Masiva Completada"
+        title: "Importación Masiva Completada"
+        greeting: "Hola %{name},"
+        message: "El proceso de importación masiva se ha completado con éxito."
+        review_log: "Por favor, revise el registro de importación para más detalles."
+        thank_you: "Gracias,"
+        signature: "El equipo de su aplicación"
+        footer: "Si tiene alguna pregunta, por favor contacte a nuestro equipo de soporte."
+      bulk_import_error_email:
+        subject: "Fallo en la Importación Masiva"
+        title: "Fallo en la Importación Masiva"
+        greeting: "Hola %{name},"
+        message: "El proceso de importación masiva ha encontrado un error y ha fallado."
+        error_message: "Mensaje de error: %{error}"
+        review_log: "Por favor, revise el registro de importación y el mensaje de error para más detalles."
+        thank_you: "Gracias,"
+        signature: "El equipo de su aplicación"
+        footer: "Si tiene alguna pregunta, por favor contacte a nuestro equipo de soporte."

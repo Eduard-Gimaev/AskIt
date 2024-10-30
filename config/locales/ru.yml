@@ -91,15 +91,16 @@ ru:
     success_create: "%{resource} успешно создан."
     success_update: "%{resource} успешно обновлен."
     success_destroy: "%{resource} успешно удален."
+    success_upload: "%{resource} успешно загружен."
     success_sign_in: "С возвращением, %{name}!"
     success_sign_out: "До скорой встречи, %{name}!"
     sign_in_required: "Вам нужно войти, чтобы продолжить."
     authorization_required: "У вас нет разрешения на выполнение этого действия."
+    failure_upload: "Произошла ошибка при загрузке %{resource}."
     failure_create: "Произошла ошибка при создании %{resource}."
     failure_update: "Произошла ошибка при обновлении %{resource}."
     failure_destroy: "Произошла ошибка при удалении %{resource}."
     failure: "Произошла ошибка при создании %{resource}."
-    file_success: "Файл успешно загружен."
     prohibited: "запретил сохранение %{resource}"
   activerecord:
     models:
@@ -132,3 +133,24 @@ ru:
       previous: "&lsaquo; Предыдущая"
       next: "Следующая &rsaquo;"
       truncate: "&hellip;"
+  admin:
+    user_mailer:
+      bulk_import_email:
+        subject: "Импорт завершен"
+        title: "Импорт завершен"
+        greeting: "Здравствуйте, %{name},"
+        message: "Процесс импорта успешно завершен."
+        review_log: "Пожалуйста, ознакомьтесь с журналом импорта для получения дополнительной информации."
+        thank_you: "Спасибо,"
+        signature: "Ваша команда приложения"
+        footer: "Если у вас есть вопросы, пожалуйста, свяжитесь с нашей службой поддержки."
+    bulk_import_error_email:
+        subject: "Ошибка импорта"
+        title: "Ошибка импорта"
+        greeting: "Здравствуйте, %{name},"
+        message: "Процесс импорта завершился с ошибкой."
+        error_message: "Сообщение об ошибке: %{error}"
+        review_log: "Пожалуйста, ознакомьтесь с журналом импорта и сообщением об ошибке для получения дополнительной информации."
+        thank_you: "Спасибо,"
+        signature: "Ваша команда приложения"
+        footer: "Если у вас есть вопросы, пожалуйста, свяжитесь с нашей службой поддержки."  

@@ -91,15 +91,16 @@ ar:
     success_create: "تم إنشاء %{resource} بنجاح."
     success_update: "تم تحديث %{resource} بنجاح."
     success_destroy: "تم حذف %{resource} بنجاح."
+    success_upload: "تم تحميل %{resource} بنجاح."
     success_sign_in: "مرحبًا بعودتك، %{name}!"
     success_sign_out: "أراك قريبًا، %{name}!"
     sign_in_required: "تحتاج إلى تسجيل الدخول قبل المتابعة."
     authorization_required: "ليس لديك الصلاحية لأداء هذا الإجراء."
+    failure_upload: "حدث خطأ أثناء تحميل %{resource}."
     failure_create: "حدث خطأ أثناء إنشاء %{resource}."
     failure_update: "حدث خطأ أثناء تحديث %{resource}."
     failure_destroy: "حدث خطأ أثناء حذف %{resource}."
     failure: "حدث خطأ أثناء إنشاء %{resource}."
-    file_success: "تم تحميل الملف بنجاح."
     prohibited: "منع هذا %{resource} من الحفظ"
   activerecord:
     models:
@@ -132,3 +133,24 @@ ar:
       previous: "&lsaquo; السابق"
       next: "التالي &rsaquo;"
       truncate: "&hellip;"
+  admin:
+    user_mailer:
+      bulk_import_email:
+        subject: "اكتمل الاستيراد الجماعي"
+        title: "اكتمل الاستيراد الجماعي"
+        greeting: "مرحبًا %{name},"
+        message: "تمت عملية الاستيراد الجماعي بنجاح."
+        review_log: "يرجى مراجعة سجل الاستيراد لمزيد من التفاصيل."
+        thank_you: "شكرًا لك,"
+        signature: "فريق التطبيق الخاص بك"
+        footer: "إذا كان لديك أي أسئلة، يرجى الاتصال بفريق الدعم لدينا."
+      bulk_import_error_email:
+        subject: "فشل الاستيراد الجماعي"
+        title: "فشل الاستيراد الجماعي"
+        greeting: "مرحبًا %{name},"
+        message: "واجهت عملية الاستيراد الجماعي خطأ وفشلت."
+        error_message: "رسالة الخطأ: %{error}"
+        review_log: "يرجى مراجعة سجل الاستيراد ورسالة الخطأ لمزيد من التفاصيل."
+        thank_you: "شكرًا لك,"
+        signature: "فريق التطبيق الخاص بك"
+        footer: "إذا كان لديك أي أسئلة، يرجى الاتصال بفريق الدعم لدينا."
