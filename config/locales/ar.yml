@@ -9,8 +9,9 @@ ar:
     lead: "منصتك المفضلة لطرح الأسئلة والإجابة عليها. انضم إلى مجتمعنا وشارك معرفتك!"
     get_started: "ابدأ باستكشاف الأسئلة أو طرح سؤالك الخاص."
   errors:
-  template:
-    header: "يرجى تصحيح الأخطاء التالية:"
+    invalid_format: "تنسيق غير صالح: %{format}"
+    template:
+      header: "يرجى تصحيح الأخطاء التالية:"
   actions:
     home: "الرئيسية"
     Questions: "الأسئلة"
@@ -54,9 +55,10 @@ ar:
     submit: "إرسال"
     cancel: "إلغاء"
     are_you_sure?: "هل أنت متأكد؟"
-    download_zip_xlsx: "تحميل Zip XLSX"
+    download_zip: "تحميل Zip"
     download_xlsx: "تحميل XLSX"
     choose_xlsx_or_zip_file: "اختر ملف XLSX أو ZIP"
+    upload_users: "تحميل المستخدمين"
     upload_file: "رفع %{resource}"
     enter_resource: "أدخل %{resource}"
   resources:
@@ -88,6 +90,7 @@ ar:
     confirm_password: "تأكيد كلمة المرور"
     error: "خطأ"
   flash:
+    export_initiated: "تم بدء التصدير. ستتلقى بريدًا إلكترونيًا يحتوي على رابط التنزيل قريبًا."
     success_create: "تم إنشاء %{resource} بنجاح."
     success_update: "تم تحديث %{resource} بنجاح."
     success_destroy: "تم حذف %{resource} بنجاح."
@@ -154,3 +157,20 @@ ar:
         thank_you: "شكرًا لك,"
         signature: "فريق التطبيق الخاص بك"
         footer: "إذا كان لديك أي أسئلة، يرجى الاتصال بفريق الدعم لدينا."
+  bulk_export_email:
+    header: "اكتمل التصدير"
+    greeting: "مرحبًا %{name},"
+    message: "تم إكمال التصدير بنجاح. يمكنك تنزيل الملف المصدر بالنقر على الزر أدناه:"
+    download_button: "تنزيل %{filename}"
+    expiration: "تنتهي صلاحية الرابط في %{time}."
+    footer_message: "إذا كان لديك أي أسئلة، لا تتردد في الرد على هذا البريد الإلكتروني."
+    company_name: "شركتك"
+    rights_reserved: "جميع الحقوق محفوظة."
+  bulk_export_error_email:
+    header: "خطأ في التصدير"
+    greeting: "مرحبًا %{name},"
+    message: "نأسف لإبلاغك بحدوث خطأ أثناء عملية التصدير. رسالة الخطأ كالتالي:"
+    error_message_label: "رسالة الخطأ"
+    footer_message: "يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بالدعم إذا استمرت المشكلة."
+    company_name: "شركتك"
+    rights_reserved: "جميع الحقوق محفوظة."

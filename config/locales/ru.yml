@@ -9,6 +9,7 @@ ru:
     lead: "Ваша платформа для вопросов и ответов. Присоединяйтесь к нашему сообществу и делитесь своими знаниями!"
     get_started: "Начните с изучения вопросов или задайте свой собственный."
   errors:
+    invalid_format: "Неверный формат: %{format}"
     template:
       header: "Пожалуйста, исправьте следующие ошибки:"  
   actions:
@@ -54,9 +55,10 @@ ru:
     submit: "Отправить"
     cancel: "Отменить"
     are_you_sure?: "Вы уверены?"
-    download_zip_xlsx: "Скачать Zip XLSX"
+    download_zip: "Скачать Zip"
     download_xlsx: "Скачать XLSX"
     choose_xlsx_or_zip_file: "Выберите файл XLSX или ZIP"
+    upload_users: "Загрузить пользователей"
     upload_file: "Загрузить %{resource}"
     enter_resource: "Введите %{resource}"
   resources:
@@ -88,6 +90,7 @@ ru:
     confirm_password: "Подтвердите пароль"
     error: "Ошибка"
   flash:
+    export_initiated: "Экспорт был инициирован. Вы получите электронное письмо с ссылкой для загрузки в ближайшее время."
     success_create: "%{resource} успешно создан."
     success_update: "%{resource} успешно обновлен."
     success_destroy: "%{resource} успешно удален."
@@ -154,3 +157,20 @@ ru:
         thank_you: "Спасибо,"
         signature: "Ваша команда приложения"
         footer: "Если у вас есть вопросы, пожалуйста, свяжитесь с нашей службой поддержки."  
+    bulk_export_email:
+      header: "Экспорт завершен"
+      greeting: "Здравствуйте, %{name},"
+      message: "Ваш экспорт успешно завершен. Вы можете скачать экспортированный файл, нажав на кнопку ниже:"
+      download_button: "Скачать %{filename}"
+      expiration: "Ссылка истекает через %{time}."
+      footer_message: "Если у вас есть вопросы, не стесняйтесь ответить на это письмо."
+      company_name: "Ваша компания"
+      rights_reserved: "Все права защищены."
+    bulk_export_error_email:
+      header: "Ошибка экспорта"
+      greeting: "Здравствуйте, %{name},"
+      message: "К сожалению, произошла ошибка во время процесса экспорта. Сообщение об ошибке:"
+      error_message_label: "Сообщение об ошибке"
+      footer_message: "Пожалуйста, попробуйте позже или свяжитесь с поддержкой, если проблема сохраняется."
+      company_name: "Ваша компания"
+      rights_reserved: "Все права защищены."

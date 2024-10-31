@@ -6,8 +6,16 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.zip { send_data User.to_zip, filename: "users-#{Date.today}.zip" }
-      format.xlsx { send_data User.to_xlsx, filename: "users-#{Date.today}.xlsx" }
+      format.zip do
+        UserBulkExportJob.perform_later(current_user, :zip)
+        flash[:notice] = t("flash.export_initiated", resource: t("resources.file"))
+        redirect_to admin_users_path
+      end
+      format.xlsx do
+        UserBulkExportJob.perform_later(current_user, :xlsx)
+        flash[:notice] = t("flash.export_initiated", resource: t("resources.file"))
+        redirect_to admin_users_path
+      end
     end
   end
 

@@ -12,14 +12,14 @@
     <div class="text-muted">
       <time datetime="<%= user.created_at.iso8601 %>">
         <small>
-          <%= t('actions.joined_at') %> <%= time_ago_in_words(user.created_at) %> ago | <%= user.created_at.strftime('%d %b %Y, %H:%M') %>
+          <%= t('actions.joined_at') %> <%= time_ago_in_words(user.created_at) %> | <%= user.created_at.strftime('%d %b %Y, %H:%M') %>
         </small>
       </time>
     </div>
     <div class="text-muted">
       <time datetime="<%= user.created_at.iso8601 %>">
         <small>
-          <%= t('actions.updated_at') %> <%= time_ago_in_words(user.updated_at) %> ago | <%= user.updated_at.strftime('%d %b %Y, %H:%M') %>
+          <%= t('actions.updated_at') %> <%= time_ago_in_words(user.updated_at) %> | <%= user.updated_at.strftime('%d %b %Y, %H:%M') %>
         </small>
       </time>
     </div>

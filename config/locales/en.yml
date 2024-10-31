@@ -9,8 +9,9 @@ en:
     lead: "Your go-to platform for asking and answering questions. Join our community and share your knowledge!"
     get_started: "Get started by exploring questions or asking your own."
   errors:
+    invalid_format: "Invalid format: %{format}"
     template:
-      header: "Please correct the following errors:"  
+      header: "Please correct the following errors:"
   actions:
     home: "Home"
     Questions: "Questions"
@@ -54,9 +55,10 @@ en:
     submit: "Submit"
     cancel: "Cancel"
     are_you_sure?: "Are you sure?"
-    download_zip_xlsx: "Download Zip XLSX"
+    download_zip: "Download Zip"
     download_xlsx: "Download XLSX"
     choose_xlsx_or_zip_file: "Choose XLSX or ZIP file"
+    upload_users: "Upload Users"
     upload_file: "Upload %{resource}"
     enter_resource: "Enter the %{resource}"
   resources:
@@ -88,6 +90,7 @@ en:
     confirm_password: "Confirm Password"
     error: "Error"
   flash:
+    export_initiated: "Export has been initiated. You will receive an email with the download link shortly."
     success_create: "%{resource} has been successfully created."
     success_update: "%{resource} has been successfully updated."
     success_destroy: "%{resource} has been successfully deleted."
@@ -154,3 +157,20 @@ en:
         thank_you: "Thank you,"
         signature: "Your Application Team"
         footer: "If you have any questions, please contact our support team."
+  bulk_export_email:
+    header: "Bulk Export Completed"
+    greeting: "Hello %{name},"
+    message: "Your bulk export has been successfully completed. You can download the exported file by clicking the button below:"
+    download_button: "Download %{filename}"
+    expiration: "The link expires in %{time}."
+    footer_message: "If you have any questions, feel free to reply to this email."
+    company_name: "Your Company"
+    rights_reserved: "All rights reserved."
+  bulk_export_error_email:
+    header: "Bulk Export Error"
+    greeting: "Hello %{name},"
+    message: "We regret to inform you that there was an error during the bulk export process. The error message is as follows:"
+    error_message_label: "Error Message"
+    footer_message: "Please try again later or contact support if the issue persists."
+    company_name: "Your Company"
+    rights_reserved: "All rights reserved."

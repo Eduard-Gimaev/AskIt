@@ -9,6 +9,7 @@ es:
     lead: "Tu plataforma para hacer y responder preguntas. ¡Únete a nuestra comunidad y comparte tu conocimiento!"
     get_started: "Comienza explorando preguntas o haciendo la tuya propia."
   errors:
+    invalid_format: "Formato inválido: %{format}"
     template:
       header: "Por favor, corrige los siguientes errores:"
   actions:
@@ -54,9 +55,10 @@ es:
     submit: "Enviar"
     cancel: "Cancelar"
     are_you_sure?: "¿Estás seguro?"
-    download_zip_xlsx: "Descargar Zip XLSX"
+    download_zip: "Descargar Zip"
     download_xlsx: "Descargar XLSX"
     choose_xlsx_or_zip_file: "Elige archivo XLSX o ZIP"
+    upload_users: "Subir Usuarios"
     upload_file: "Subir %{resource}"
     enter_resource: "Introduce el %{resource}"
   resources:
@@ -88,6 +90,7 @@ es:
     confirm_password: "Confirmar contraseña"
     error: "Error"
   flash:
+    export_initiated: "La exportación ha sido iniciada. Recibirás un correo electrónico con el enlace de descarga en breve."
     success_create: "%{resource} fue creado exitosamente."
     success_update: "%{resource} fue actualizado exitosamente."
     success_destroy: "%{resource} fue eliminado exitosamente."
@@ -154,3 +157,20 @@ es:
         thank_you: "Gracias,"
         signature: "El equipo de su aplicación"
         footer: "Si tiene alguna pregunta, por favor contacte a nuestro equipo de soporte."
+  bulk_export_email:
+    header: "Exportación completada"
+    greeting: "Hola %{name},"
+    message: "Su exportación se ha completado con éxito. Puede descargar el archivo exportado haciendo clic en el botón a continuación:"
+    download_button: "Descargar %{filename}"
+    expiration: "El enlace expira en %{time}."
+    footer_message: "Si tiene alguna pregunta, no dude en responder a este correo electrónico."
+    company_name: "Su empresa"
+    rights_reserved: "Todos los derechos reservados."
+  bulk_export_error_email:
+    header: "Error de exportación"
+    greeting: "Hola %{name},"
+    message: "Lamentamos informarle que hubo un error durante el proceso de exportación. El mensaje de error es el siguiente:"
+    error_message_label: "Mensaje de error"
+    footer_message: "Por favor, inténtelo de nuevo más tarde o contacte con soporte si el problema persiste."
+    company_name: "Su empresa"
+    rights_reserved: "Todos los derechos reservados."      

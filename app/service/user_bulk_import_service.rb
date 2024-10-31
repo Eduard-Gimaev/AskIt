@@ -38,7 +38,6 @@ class UserBulkImportService < ApplicationService
         end
       end
     rescue StandardError => e
-      puts "Error processing ZIP file: #{e.message}"
     end
   end
 
@@ -48,7 +47,6 @@ class UserBulkImportService < ApplicationService
                                                             conflict_target: [ :email ],
                                                             columns: [ :name, :password_digest ] }
     rescue StandardError => e
-      puts "Error processing XLSX file: #{e.message}"
     end
   end
 
