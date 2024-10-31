@@ -5,7 +5,7 @@ module Bulkable
     def self.to_xlsx
       attributes = %w[id name email created_at updated_at]
 
-      file = Tempfile.new(['users', '.xlsx'])
+      file = Tempfile.new([ "users", ".xlsx" ])
       Axlsx::Package.new do |p|
         p.workbook.add_worksheet(name: "Users") do |sheet|
           # Define styles
@@ -44,7 +44,7 @@ module Bulkable
           end
           # Add summary row
           total_users = all.count
-          sheet.add_row ["Total Users", total_users], style: summary_style, height: 20
+          sheet.add_row [ "Total Users", total_users ], style: summary_style, height: 20
         end
         p.serialize(file.path)
       end
@@ -55,7 +55,7 @@ module Bulkable
     def self.to_zip
       xlsx_data = to_xlsx
 
-      zip_file = Tempfile.new(['users', '.zip'])
+      zip_file = Tempfile.new([ "users", ".zip" ])
       Zip::OutputStream.open(zip_file.path) do |zos|
         zos.put_next_entry "users-#{Date.today}.xlsx"
         zos.print xlsx_data

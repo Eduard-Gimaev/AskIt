@@ -18,7 +18,7 @@ class UserBulkImportService < ApplicationService
       raise "Unsupported file type: #{extname}"
     end
   end
-  
+
 
   private
 

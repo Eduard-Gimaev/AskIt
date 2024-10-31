@@ -1,5 +1,5 @@
-require 'zip'
-require 'caxlsx'
+require "zip"
+require "caxlsx"
 
 class UserBulkExportService < ApplicationService
   attr_reader :initiator, :format
@@ -27,16 +27,16 @@ class UserBulkExportService < ApplicationService
     when :xlsx
       User.to_xlsx # This method from bulkable.rb
     else
-       raise I18n.t('errors.invalid_format', format: format)
+       raise I18n.t("errors.invalid_format", format: format)
     end
   end
 
   def upload_to_active_storage(file)
     content_type = case format
-                   when :xlsx then 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                   when :zip then 'application/zip'
-                   else 'application/octet-stream'
-                   end
+    when :xlsx then "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    when :zip then "application/zip"
+    else "application/octet-stream"
+    end
 
     ActiveStorage::Blob.create_and_upload!(
       io: file,

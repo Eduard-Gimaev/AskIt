@@ -1,4 +1,4 @@
-require 'sidekiq/web'
+require "sidekiq/web"
 
 class AdminConstraint
   def matches?(request)
@@ -9,7 +9,7 @@ class AdminConstraint
 end
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
+  mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
 
   root "pages#index"
 
