@@ -1,0 +1,11 @@
+Bulk Export Completed
+
+Hello <%= @user.name %>,
+
+Your bulk export has been successfully completed. You can download the exported file by clicking the link below:
+
+Download <%= @blob.filename.to_s %>: <%= @download_url %>
+
+If you have any questions, feel free to reply to this email.
+
+© <%= Time.now.year %> Your Company. All rights reserved.

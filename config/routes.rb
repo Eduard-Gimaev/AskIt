@@ -1,6 +1,17 @@
-Rails.application.routes.draw do
-  root "pages#index"
+require "sidekiq/web"
 
+class AdminConstraint
+  def matches?(request)
+    user_id = request.session[:user_id] || request.cookie_jar.encrypted[:user_id]
+    return  unless user_id
+    User.find_by(id: user_id)&.admin?
+  end
+end
+
+Rails.application.routes.draw do
+  mount Sidekiq::Web => "/sidekiq", constraints: AdminConstraint.new
+
+  root "pages#index"
 
   get "set_locale/:locale", to: "locales#set_locale", as: :set_locale
 
@@ -21,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [ :new, :create, :index, :show, :edit, :update, :destroy ]
+    resources :users, only: [ :new, :create, :index, :show, :edit, :update, :destroy ], constraints: AdminConstraint.new
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

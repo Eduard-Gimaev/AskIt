@@ -5,7 +5,7 @@ module Recoverable
     before_update :clear_password_reset_token, if: :password_digest_changed?
     def send_password_reset
       generate_token
-      PasswordResetMailer.with(user: self).password_reset_via_email.deliver_now
+      PasswordResetMailer.with(user: self).password_reset_via_email.deliver_later
     end
 
     def valid_token_period?

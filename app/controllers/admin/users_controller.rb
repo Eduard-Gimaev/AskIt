@@ -6,8 +6,16 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.zip { send_data User.to_zip, filename: "users-#{Date.today}.zip" }
-      format.xlsx { send_data User.to_xlsx, filename: "users-#{Date.today}.xlsx" }
+      format.zip do
+        UserBulkExportJob.perform_later(current_user, :zip)
+        flash[:notice] = t("flash.export_initiated", resource: t("resources.file"))
+        redirect_to admin_users_path
+      end
+      format.xlsx do
+        UserBulkExportJob.perform_later(current_user, :xlsx)
+        flash[:notice] = t("flash.export_initiated", resource: t("resources.file"))
+        redirect_to admin_users_path
+      end
     end
   end
 
@@ -17,16 +25,23 @@ class Admin::UsersController < ApplicationController
 
   def create
     if params[:file].present?
-      UserBulkService.call(params[:file])
-      flash[:notice] = t("flash.success_upload", resource: t("resources.file"))
+      blob_key = create_blob(params[:file])
+      begin
+        UserBulkImportJob.perform_later(blob_key, current_user)
+        flash[:notice] = t("flash.success_upload", resource: t("resources.file"))
+      rescue StandardError => e
+        flash[:alert] = t("flash.failure_upload", resource: t("resources.file"), error: e.message)
+      ensure
+        redirect_to admin_users_path
+      end
     else
       @user = User.new(user_params)
-       if @user.save
-        flash[:notice] = t("flash.success_create", resource: t("resources.user"))
+      if @user.save
+        flash.now[:notice] = t("flash.success_create", resource: t("resources.user"))
         redirect_to admin_users_path
-       else
+      else
         render :new, status: :unprocessable_entity
-       end
+      end
     end
   end
 
@@ -57,6 +72,15 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+
+  def create_blob(uploaded_file)
+    blob = ActiveStorage::Blob.create_and_upload!(
+      io: uploaded_file.tempfile,
+      filename: uploaded_file.original_filename,
+      content_type: uploaded_file.content_type
+    )
+    blob.key
+  end
 
   def set_user
     @user = User.find(params[:id])

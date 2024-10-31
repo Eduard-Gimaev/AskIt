@@ -9,14 +9,13 @@
   
 
 <div class="btn-group mb-3"> 
-  <%= link_to t('actions.download_zip_xlsx'), admin_users_path(format: :zip), class: 'btn btn-primary' %>
-  <%= link_to t('actions.download_xlsx'), admin_users_path(format: :xlsx), class: 'btn btn-secondary' %>
+  <%= link_to t('actions.download_zip'), admin_users_path(format: :zip), class: 'btn btn-primary', data: { turbo_confirm: t('actions.are_you_sure?')} %>
+  <%= link_to t('actions.download_xlsx'), admin_users_path(format: :xlsx), class: 'btn btn-secondary', data: { turbo_confirm: t('actions.are_you_sure?')} %>
 </div>
 
-<h2>Upload XLSX or ZIP file</h2>
 <%= form_with url: admin_users_path, method: :post, local: true, multipart: true do |form| %>
   <div class="form-group">
-    <%= form.label :file, t('actions.choose_xlsx_or_zip_file') %>
+    <%= form.label :file, t('actions.upload_users') %>
     <%= form.file_field :file, class: 'form-control' %>
   </div>
   <%= form.submit t('actions.upload_file', resource: t('resources.file')), class: 'btn btn-success' %>
