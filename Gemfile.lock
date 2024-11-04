@@ -333,7 +333,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.4)
+    sidekiq (7.3.5)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -430,7 +430,7 @@ DEPENDENCIES
   rubyzip (~> 2.3)
   sassc-rails (>= 2.1.2)
   selenium-webdriver
-  sidekiq (~> 7.3.4)
+  sidekiq (~> 7.3.5)
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails
