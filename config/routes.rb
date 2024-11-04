@@ -23,12 +23,12 @@ Rails.application.routes.draw do
   resources :users, only: [ :new, :create, :edit, :update ]
 
   resources :questions do
-    resources :comments, only: [ :create, :show, :destroy ]
-    resources :answers, only: [ :create, :destroy ]
+    resources :comments, only: [ :new, :create, :edit, :update, :destroy ]
+    resources :answers, only: [ :new, :create, :edit, :update, :destroy ]
   end
 
   resources :answers do
-    resources :comments, only: [ :create, :show, :destroy ]
+    resources :comments, only: [ :new, :create, :edit, :update, :destroy ]
   end
 
   namespace :admin do

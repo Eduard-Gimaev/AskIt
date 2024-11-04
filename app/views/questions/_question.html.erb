@@ -1,4 +1,7 @@
-<div class="container mt-4">
+<div class="mt-4">
+    <%= link_to t('actions.back'), questions_path %>
+</div>
+<div class="container">
   <article class="card mt-3">
     <div class="card-header d-flex align-items-center">
       <div class="d-flex align-items-center flex-grow-1">
@@ -25,7 +28,6 @@
         <div class="my-2">
           <%= render question.tags %>
         </div>
-
       </section>
        <% if policy(question).edit? %>
         <div class= "mt-0">
@@ -37,11 +39,9 @@
       </div>
   </article>
 
-   <div class="mt-4">
-      <div class="d-flex">
-        <%= link_to t('actions.back_to', resource: t('resources.questions')), questions_path, class: 'btn btn-primary mx-1' %>
-      </div>
-    </div>
+  <div class="mt-4">
+      <%= link_to t('actions.add_resource', resource: t('resources.answer')), new_question_answer_path(question), class: 'btn btn-primary mx-1' %>
+  </div>
 
   <%= paginate @answers if @answers.any? %> 
   <div class="mt-3">

@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_commentable!
   before_action :find_comment, only: %i[show edit update destroy]
-  before_action :authorize_question!, except: %i[index show]
 
   def create
     @comment = @commentable.comments.build(comment_params)
