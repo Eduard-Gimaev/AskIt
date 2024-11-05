@@ -11,11 +11,26 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.new(answer_create_params)
+    @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     if @answer.save
-       flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
-      redirect_to question_path(@question, anchor: dom_id(@answer))
+      respond_to do |format|
+        format.html do 
+          flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
+          redirect_to question_path(@question, anchor: dom_id(@answer)) 
+        end
+        format.turbo_stream do
+           @question = @question.decorate
+        end
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("answers", partial: "questions/question", locals: { answers: @answers }),
+          ]
+        end
+      end
     end
   end
 

@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "answers" do %>
+  <%= render @answers, locals: { comment: @comment } %>
+  <%= paginate @answers if @answers.any? %>
+<% end %>

@@ -1,7 +1,7 @@
 <%= tag.article class: "card mt-3", id: dom_id(answer) do %>
   <div class="card-header d-flex align-items-center">
     <div class="d-flex align-items-center flex-grow-1">
-      <h5 class="mb-0"><%= answer.user.decorate.name_or_email %></h5>
+      <h5 class="mb-0">Answer from <%= answer.user.decorate.name_or_email %></h5>
       <time class="text-muted ms-2" datetime="<%= answer.created_at.iso8601 %>">
         <small><%= answer.created_at.strftime('%d %b %Y, %H:%M') %></small>
       </time>
@@ -11,7 +11,10 @@
         <%= link_to t('actions.edit'), edit_question_answer_path(answer.question, answer), class: "btn btn-warning btn-sm mx-1" %>
       <% end %>
         <% if policy(answer).destroy? %>
-        <%= button_to t('actions.delete'), question_answer_path(answer.question, answer), method: :delete, data: { turbo_confirm: t('actions.are_you_sure?'), turbo_method: :delete}, class: "btn btn-danger btn-sm mx-1" %>      
+        <%= button_to t('actions.delete'), question_answer_path(answer.question, answer), 
+                        method: :delete, data: { turbo_confirm: t('actions.are_you_sure?'), 
+                        turbo_method: :delete}, 
+                        class: "btn btn-danger btn-sm mx-1" %>      
       <% end %>
     </div>
   </div>
@@ -22,9 +25,9 @@
       </div>
     </section>
     <div>
-     <% if policy(answer).edit? %>
-      <%= render 'comments/form', commentable: answer, comment: @comment %>
-    <% end %>
+      <% if policy(answer).edit? %>
+        <%= render 'comments/form', commentable: answer, comment: @comment %>
+      <% end %>
     </div>
     <div class="mt-2">
     <%= render answer.comments.decorate %>
