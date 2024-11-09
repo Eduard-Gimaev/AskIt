@@ -30,11 +30,6 @@
           <%= render 'comments/form', commentable: answer, comment: @comment %>
         <% end %>
       </div>
-      <div class="mt-2">
-        <%= turbo_frame_tag [answer, :comments] do %>
-          <%= render answer.comments.decorate %>
-        <% end %>
-      </div>
     </div>
   <% end %>
 <% end %>

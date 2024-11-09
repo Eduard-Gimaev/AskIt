@@ -1,4 +1,4 @@
-<div id="comment_form">
+<%= turbo_frame_tag "comment_form_#{dom_id(commentable)}" do %>
   <div class="comments mt-1">
     <div class="mt-1">
       <button class="btn btn-primary btn-sm mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#commentForm-<%= commentable.id %>" aria-expanded="false" aria-controls="commentForm-<%= commentable.id %>">
@@ -17,5 +17,10 @@
         <% end %>
       </div>
     </div>
+     <div class="mt-2">
+      <%= turbo_frame_tag "#{dom_id(commentable)}_comments" do %>
+        <%= render commentable.comments.decorate %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>

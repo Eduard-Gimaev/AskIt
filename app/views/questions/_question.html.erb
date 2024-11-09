@@ -2,9 +2,10 @@
   <div class="mt-4">
     <%= link_to t('actions.back'), questions_path %>
     <% if policy(@question).edit? %>
-      <button class="btn btn-primary mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#answerForm" aria-expanded="false" aria-controls="answerForm">
-        <%= t('actions.add_resource', resource: t('resources.answer')) %>
-      </button>
+        <button class="btn btn-primary mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#answerForm" aria-expanded="false" aria-controls="answerForm">
+          <%= t('actions.add_resource', resource: t('resources.answer')) %>
+        </button>
+      
       <div class="collapse mt-3" id="answerForm">
         <%= turbo_frame_tag "answer_form" do %>
           <%= render 'answers/form', question: @question, answer: @answer || @question.answers.new %>
@@ -44,11 +45,6 @@
           <%= render 'comments/form', commentable: @question, comment: @comment %>
         </div>
       <% end %>
-      <div class="mt-2">
-        <%= turbo_frame_tag [@question, :comments] do %>
-          <%= render @question.comments.decorate %>
-        <% end %>
-      </div>
   </article>
   <%= turbo_frame_tag "pagination" do %>
     <%= paginate @answers if @answers.any? %> 

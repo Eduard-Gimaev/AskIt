@@ -1,4 +1,4 @@
-<%= turbo_frame_tag comment do %>
+<%= turbo_frame_tag dom_id(@comment) do %>
   <%= tag.div class: "comment d-flex align-items-center", style: "width: 100%;" do %>
     <span class="author me-2" style="font-size: 0.75em; line-height: 1.2;"><%= comment.user.decorate.name_or_email %></span>
     <span class="date text-muted me-2" style="font-size: 0.75em; line-height: 1.2; white-space: nowrap;"><%= comment.created_at.strftime('%d %b %Y, %H:%M') %></span>

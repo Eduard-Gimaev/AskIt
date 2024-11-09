@@ -10,18 +10,17 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = @question.answers.new(answer_create_params)
+    @answer = @question.answers.new(answer_create_params).decorate
     @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     if @answer.save
       flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
       respond_to do |format|
         format.html { redirect_to question_path(@question, anchor: dom_id(@answer)) }
         format.turbo_stream do
-          @answer = @answer.decorate
           render turbo_stream: [
-            turbo_stream.append("answers", partial: "answers/answer", locals: { answer: @answer }),
-            turbo_stream.replace("answer_form", "")
-          ]
+            turbo_stream.prepend("answers", partial: "answers/answer", locals: { answer: @answer })
+            # turbo_stream.replace("answer_form", "")
+            ]
         end
       end
     else

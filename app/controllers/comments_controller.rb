@@ -4,28 +4,18 @@ class CommentsController < ApplicationController
   before_action :find_comment, only: %i[show edit update destroy]
 
   def create
-    @comment = @commentable.comments.build(comment_params)
-    @comment.user = current_user
-    @comment = @comment.decorate
+    @comment = @commentable.comments.build(comment_params).decorate
     if @comment.save
       flash.now[:notice] = t("flash.success_create", resource: t("resources.comment"))
       respond_to do |format|
         format.html { redirect_to @commentable }
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.prepend(@commentable, partial: "comments/comment", locals: { comment: @comment })
-        ]
-        end
-    end
+        format.turbo_stream
+      end
     else
       flash.now[:alert] = t("flash.failure_create", resource: t("resources.comment"))
       respond_to do |format|
         format.html { render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }, status: :unprocessable_entity }
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace("comment_form", partial: "comments/form", locals: { commentable: @commentable, comment: @comment })
-        ]
-        end
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, partial: "comments/comment", locals: { comment: @comment }) }
       end
     end
   end

@@ -1,4 +1,4 @@
-<%= turbo_frame_tag @answer do %>
+<%= turbo_frame_tag "answer_form" do %>
   <div class="card-body">
     <%= form_with(model: [@question, @answer || @question.answers.new], local: true, class: "needs-validation") do |f| %>
       <div class="form-group">
