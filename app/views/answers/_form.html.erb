@@ -1,12 +1,12 @@
-<%= turbo_frame_tag dom_id(@answer) do %>
+<%= turbo_frame_tag @answer do %>
   <div class="card-body">
-    <%= form_with(model: [@answer.question, @answer], local: true, class: "needs-validation") do |f| %>
+    <%= form_with(model: [@question, @answer || @question.answers.new], local: true, class: "needs-validation") do |f| %>
       <div class="form-group">
-        <%= f.text_area :body, class: "form-control #{'is-invalid' if @answer.errors[:body].any?}", placeholder: t('actions.enter_resource', resource: t('resources.answer')) %>
-        <%= render 'shared/errors_resource_entity', resource: @answer, resource_entity: :body %>
+        <%= f.text_area :body, class: "form-control #{'is-invalid' if (@answer || @question.answers.new).errors[:body].any?}", placeholder: t('actions.enter_resource', resource: t('resources.answer')) %>
+        <%= render 'shared/errors_resource_entity', resource: (@answer || @question.answers.new), resource_entity: :body %>
       </div>
       <div class="form-group mt-2">
-        <%= f.submit @answer.persisted? ? t('actions.save') : t('actions.submit'), class: 'btn btn-primary btn-sm mx-1' %>
+        <%= f.submit (@answer || @question.answers.new).persisted? ? t('actions.save') : t('actions.submit'), class: 'btn btn-primary btn-sm mx-1' %>
       </div>
     <% end %>
   </div>

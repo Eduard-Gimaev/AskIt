@@ -6,7 +6,16 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.build(comment_params)
     if @comment.save
-      redirect_to @commentable, notice: t("flash.success_create", resource: t("resources.comment"))
+      flash.now[:notice] = t("flash.success_create", resource: t("resources.comment"))
+      respond_to do |format|
+        format.html { redirect_to @commentable }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.append("question_comments", partial: "comments/comment", locals: { comment: @comment }),
+            turbo_stream.replace("comment_form", "")
+          ]
+        end
+    end
     else
       flash.now[:alert] = t("flash.failure_create", resource: t("resources.comment"))
       render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }
@@ -19,14 +28,24 @@ class CommentsController < ApplicationController
   def edit
     render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }
   end
+
   def update
    @comment.update(comment_params)
-   redirect_to @commentable, notice: t("flash.success_update", resource: t("resources.comment"))
+   falsh.now[:notice] = t("flash.success_update", resource: t("resources.comment"))
+   respond_to do |format|
+      format.html { redirect_to @commentable }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, partial: "comments/comment", locals: { comment: @comment }) }
+   end
+
   end
 
   def destroy
     @comment.destroy
-    redirect_to @commentable, notice: t("flash.success_destroy", resource: t("resources.comment"))
+    flash.now[:notice] = t("flash.success_destroy", resource: t("resources.comment"))
+    respond_to do |format|
+      format.html { redirect_to @commentable }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
+    end
   end
 
   private

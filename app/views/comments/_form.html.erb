@@ -1,19 +1,21 @@
-<div class="comments mt-1">
-  <div class="mt-1">
-      <button class="btn btn-primary btn-sm mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#commentForm-<%= commentable.id %>" aria-expanded="false" aria-controls="commentForm-<%= commentable.id %>">
-      <%= t('actions.add_resource', resource: t('resources.comment')) %>
-    </button>
-    <div class="collapse mt-3" id="commentForm-<%= commentable.id %>">
-      <%= form_with(model: [commentable, (comment || commentable.comments.build)], local: true) do |f| %>
-        <%= render 'shared/errors', resource: f.object %>
-        <div class="form-group">
-          <%= f.text_area :body, class: "form-control #{'is-invalid' if f.object.errors[:body].any?}", rows: 1, placeholder: t('actions.enter_resource', resource: t('resources.comment')) %>
-          <%= render 'shared/errors_resource_entity', resource: f.object, resource_entity: :body %>
-        </div>
-        <div class="form-group mt-2">
-          <%= f.submit f.object.persisted? ? t('actions.save') : t('actions.create'), class: 'btn btn-primary btn-sm mx-1' %>
-        </div>
-      <% end %>
+<div id="comment_form">
+  <div class="comments mt-1">
+    <div class="mt-1">
+        <button class="btn btn-primary btn-sm mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#commentForm-<%= commentable.id %>" aria-expanded="false" aria-controls="commentForm-<%= commentable.id %>">
+        <%= t('actions.add_resource', resource: t('resources.comment')) %>
+      </button>
+      <div class="collapse mt-3" id="commentForm-<%= commentable.id %>">
+        <%= form_with(model: [commentable, (comment || commentable.comments.build)], local: true) do |f| %>
+          <%= render 'shared/errors', resource: f.object %>
+          <div class="form-group">
+            <%= f.text_area :body, class: "form-control #{'is-invalid' if f.object.errors[:body].any?}", rows: 1, placeholder: t('actions.enter_resource', resource: t('resources.comment')) %>
+            <%= render 'shared/errors_resource_entity', resource: f.object, resource_entity: :body %>
+          </div>
+          <div class="form-group mt-2">
+            <%= f.submit f.object.persisted? ? t('actions.save') : t('actions.create'), class: 'btn btn-primary btn-sm mx-1' %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
