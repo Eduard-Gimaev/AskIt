@@ -15,21 +15,24 @@ class AnswersController < ApplicationController
     if @answer.save
       flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
       respond_to do |format|
-        format.html do 
-          redirect_to question_path(@question, anchor: dom_id(@answer)) 
-        end
+        format.html { redirect_to question_path(@question, anchor: dom_id(@answer)) }
         format.turbo_stream do
-         @answer = @answer.decorate
-         render turbo_stream: [
+          @answer = @answer.decorate
+          render turbo_stream: [
+            turbo_stream.append("answers", partial: "answers/answer", locals: { answer: @answer }),
             turbo_stream.replace("answer_form", "")
           ]
-          
         end
       end
     else
       flash.now[:alert] = t("flash.failure_create", resource: t("resources.answer"))
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("answer_form", partial: "answers/form", locals: { question: @question, answer: @answer })
+          ]
+        end
       end
     end
   end

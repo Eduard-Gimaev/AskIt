@@ -31,7 +31,7 @@
         <% end %>
       </div>
       <div class="mt-2">
-        <%= turbo_frame_tag answer, :comments do %>
+        <%= turbo_frame_tag [answer, :comments] do %>
           <%= render answer.comments.decorate %>
         <% end %>
       </div>
