@@ -20,15 +20,15 @@ Rails.application.routes.draw do
   resources :account_activations, only: [ :edit ]
 
 
-  resources :users, only: [ :new, :create, :edit, :update ]
+  resources :users, only: [ :new, :create, :show, :edit, :update ]
 
   resources :questions do
-    resources :comments, only: [ :new, :create, :edit, :update, :destroy ]
-    resources :answers, only: [ :new, :create, :edit, :update, :destroy ]
+    resources :comments, only: [ :new, :create, :show, :edit, :update, :destroy ]
+    resources :answers, only: [ :new, :create, :show, :edit, :update, :destroy ]
   end
 
   resources :answers do
-    resources :comments, only: [ :new, :create, :edit, :update, :destroy ]
+    resources :comments, only: [ :new, :create, :show, :edit, :update, :destroy ]
   end
 
   namespace :admin do

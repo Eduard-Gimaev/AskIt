@@ -1,2 +1,6 @@
-<%= turbo_stream.prepend dom_id(@comment.commentable, :comments), partial: "comments/comment", locals: { comment: @comment } %>
-<%= turbo_stream.replace "comment_form_#{dom_id(@comment.commentable)}", partial: "comments/form", locals: { commentable: @comment.commentable, comment: Comment.new } %>
+<% if @comment.errors.any? %>
+  <%= turbo_stream.replace "comment_form_#{dom_id(@comment.commentable)}", partial: "comments/form", locals: { commentable: @comment.commentable, comment: @comment  } %>
+<% else %>
+  <%= turbo_stream.prepend dom_id(@comment.commentable, :comments), partial: "comments/comment", locals: { comment: @comment } %>
+  <%= turbo_stream.replace "comment_form_#{dom_id(@comment.commentable)}", partial: "comments/form", locals: { commentable: @comment.commentable, comment: Comment.new } %>
+<% end %>

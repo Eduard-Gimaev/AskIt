@@ -19,7 +19,6 @@ class AnswersController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.prepend("answers", partial: "answers/answer", locals: { answer: @answer })
-            # turbo_stream.replace("answer_form", "")
             ]
         end
       end
@@ -37,16 +36,16 @@ class AnswersController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
     if @answer.update(answer_update_params)
+      @answer.decorate
       flash.now[:notice] = t("flash.success_update", resource: t("resources.answer"))
       respond_to do |format|
         format.html { redirect_to question_path(@answer.question, anchor: dom_id(@answer)) }
-        format.turbo_stream do
-          @answer = @answer.decorate
-        end
+        format.turbo_stream
       end
     else
       flash.now[:alert] = t("flash.failure_update", resource: t("resources.answer"))

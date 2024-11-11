@@ -1,1 +1,1 @@
-<%= turbo_stream.replace @answer, render(@answer, question: @answer.question) %>
+<%= turbo_stream.replace dom_id(@answer), partial: "answers/answer", locals: { answer: @answer } %>

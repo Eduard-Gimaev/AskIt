@@ -15,34 +15,47 @@ class CommentsController < ApplicationController
       flash.now[:alert] = t("flash.failure_create", resource: t("resources.comment"))
       respond_to do |format|
         format.html { render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }, status: :unprocessable_entity }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, partial: "comments/comment", locals: { comment: @comment }) }
+        format.turbo_stream
       end
     end
   end
 
   def show
+
   end
 
   def edit
-    render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }
+    respond_to do |format|
+      format.html { render partial: "comments/form", locals: { commentable: @commentable, comment: @comment } }
+      format.turbo_stream do
+        byebug
+        render turbo_stream: turbo_stream.replace("comment_form_#{dom_id(@comment)}", partial: "comments/form", locals: { commentable: @commentable, comment: @comment })
+      end
+    end
   end
 
   def update
-   @comment.update(comment_params)
-   falsh.now[:notice] = t("flash.success_update", resource: t("resources.comment"))
-   respond_to do |format|
-      format.html { redirect_to @commentable }
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, partial: "comments/comment", locals: { comment: @comment }) }
-   end
-
+    if @comment.update(comment_params)
+      flash.now[:notice] = t("flash.success_update", resource: t("resources.comment"))
+      respond_to do |format|
+          format.html { redirect_to @commentable }
+          format.turbo_stream
+      end
+    else
+      flash.now[:alert] = t("flash.failure_update", resource: t("resources.comment"))
+      respond_to do |format|
+        format.html { render partial: "comments/form", locals: { commentable: @commentable, comment: @comment }, status: :unprocessable_entity }
+        format.turbo_stream
+      end
+    end
   end
 
   def destroy
-    @comment.destroy
+    @comment.destroy # delete from database
     flash.now[:notice] = t("flash.success_destroy", resource: t("resources.comment"))
     respond_to do |format|
       format.html { redirect_to @commentable }
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
+      format.turbo_stream # remove from the page
     end
   end
 
