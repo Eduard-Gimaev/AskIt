@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+    @comment = Comment.new
   end
 
   def new

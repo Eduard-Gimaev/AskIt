@@ -10,12 +10,28 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = @question.answers.new(answer_create_params)
+    @answer = @question.answers.new(answer_create_params).decorate
+    @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     if @answer.save
-       flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
-      redirect_to question_path(@question, anchor: dom_id(@answer))
+      flash.now[:notice] = t("flash.success_create", resource: t("resources.answer"))
+      respond_to do |format|
+        format.html { redirect_to question_path(@question, anchor: dom_id(@answer)) }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.prepend("answers", partial: "answers/answer", locals: { answer: @answer })
+            ]
+        end
+      end
     else
-      render :new, status: :unprocessable_entity
+      flash.now[:alert] = t("flash.failure_create", resource: t("resources.answer"))
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("answer_form", partial: "answers/form", locals: { question: @question, answer: @answer })
+          ]
+        end
+      end
     end
   end
 
@@ -24,10 +40,22 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_update_params)
+      @answer.decorate
       flash.now[:notice] = t("flash.success_update", resource: t("resources.answer"))
-      redirect_to question_path(@answer.question, anchor: dom_id(@answer))
+      respond_to do |format|
+        format.html { redirect_to question_path(@answer.question, anchor: dom_id(@answer)) }
+        format.turbo_stream
+      end
     else
-      render :edit, status: :unprocessable_entity
+      flash.now[:alert] = t("flash.failure_update", resource: t("resources.answer"))
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("answer_form", partial: "answers/form", locals: { question: @question, answer: @answer })
+          ]
+        end
+      end
     end
   end
 
@@ -35,7 +63,16 @@ class AnswersController < ApplicationController
     @question = @answer.question
     if @answer.destroy
       flash.now[:notice] = t("flash.success_destroy", resource: t("resources.answer"))
-      redirect_to question_path(@question)
+      @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+      if @answers.empty? && params[:page].to_i > 1
+        params[:page] = params[:page].to_i - 1
+        @answers = @question.answers.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+      end
+      respond_to do |format|
+        format.html { redirect_to question_path(@question), status: :see_other }
+        # format.turbo_stream { render turbo_stream: turbo_stream.remove(dom_id(@answer)) } # generates the Turbo Stream response inline, so there's no need for a separate template file
+        format.turbo_stream
+      end
     else
       flash.now[:alert] = t("flash.failure_destroy", resource: t("resources.answer"))
       redirect_to question_path(@question)

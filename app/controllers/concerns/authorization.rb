@@ -5,7 +5,7 @@ module Authorization
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     private
-    include Pundit
+    include Pundit::Authorization
 
     def user_not_authorized
       flash[:alert] = t("flash.authorization_required")
