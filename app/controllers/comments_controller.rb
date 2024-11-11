@@ -21,13 +21,16 @@ class CommentsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def edit
     respond_to do |format|
       format.html { render partial: "comments/form", locals: { commentable: @commentable, comment: @comment } }
       format.turbo_stream do
-        byebug
         render turbo_stream: turbo_stream.replace("comment_form_#{dom_id(@comment)}", partial: "comments/form", locals: { commentable: @commentable, comment: @comment })
       end
     end
@@ -65,9 +68,16 @@ class CommentsController < ApplicationController
   end
 
   def set_commentable!
-    klass = [ Question, Answer ].detect { |c| params["#{c.name.underscore}_id"] }
-    raise ActionController::RoutingError, "Not Found" unless klass
-    @commentable = klass.includes(:user).find(params["#{klass.name.underscore}_id"])
+    @commentable = find_commentable
+  end
+
+  def find_commentable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
 
   def comment_params
