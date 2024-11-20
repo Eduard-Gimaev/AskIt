@@ -33,7 +33,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 # Use ValidEmail2 for email validation
-gem "valid_email2", "~> 5.3" # Email validation
+gem "valid_email2", "~> 7.0" # Email validation
 gem "rubyzip", "~> 2.3"  # Zip files
 gem "caxlsx", "~> 4.1" # Excel files
 gem "caxlsx_rails", "~> 0.5" # Excel files
