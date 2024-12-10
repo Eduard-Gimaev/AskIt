@@ -38,7 +38,7 @@ gem "rubyzip", "~> 2.3"  # Zip files
 gem "caxlsx", "~> 4.1" # Excel files
 gem "caxlsx_rails", "~> 0.5" # Excel files
 gem "rubyXL", "~> 3.4" # Excel files
-gem "activerecord-import", "~> 1.0" # Bulk insert
+gem "activerecord-import", "~> 2.0" # Bulk insert
 gem "rails-i18n", "~> 7.0" # Internationalization
 gem "sassc-rails", ">= 2.1.2" # SASS
 # Use Sidekiq for background processing
