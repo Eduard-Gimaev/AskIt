@@ -42,7 +42,7 @@ gem "activerecord-import", "~> 1.0" # Bulk insert
 gem "rails-i18n", "~> 7.0" # Internationalization
 gem "sassc-rails", ">= 2.1.2" # SASS
 # Use Sidekiq for background processing
-gem "sidekiq", "~> 7.3.4"
+gem "sidekiq", "~> 7.3.7"
 # Use Redis for caching
 gem "redis", "~> 5.3.0"
 
